@@ -77,13 +77,13 @@
                 <select id="cboProducto" name="cboProducto" class="input-tech" required>
                     <option value="" disabled selected>-- Inicialice escaneo o seleccione de la lista --</option>
                     <%
-                        ferreteriacruz.dao.SerieHardwareDAO serieDao = new ferreteriacruz.dao.SerieHardwareDAO();
+                        ferreteriacruz.dao.SeriesDAO serieDao = new ferreteriacruz.dao.SeriesDAO();
                         if (listaProductos != null) {
                             for (Producto p : listaProductos) {
                                 if (p.getStockActual() > 0) {
-                                    java.util.List<ferreteriacruz.modelo.SerieHardware> seriesDisp = serieDao.listarSeriesDisponibles(p.getIdProducto());
+                                    java.util.List<ferreteriacruz.modelo.Series> seriesDisp = serieDao.listarSeriesDisponibles(p.getIdProducto());
                                     StringBuilder sbSeries = new StringBuilder();
-                                    for(ferreteriacruz.modelo.SerieHardware s : seriesDisp) {
+                                    for(ferreteriacruz.modelo.Series s : seriesDisp) {
                                         sbSeries.append(s.getNumeroSerie()).append(",");
                                     }
                                     String strSeries = sbSeries.toString();

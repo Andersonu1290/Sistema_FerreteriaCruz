@@ -12,8 +12,8 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.jsp.*;
 import java.util.List;
-import sercoplus.modelo.MovimientoKardex;
-import sercoplus.modelo.Usuario;
+import ferreteriacruz.modelo.MovimientoKardex;
+import ferreteriacruz.modelo.Usuario;
 
 public final class Kardex_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent,
@@ -36,8 +36,8 @@ public final class Kardex_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_imports_packages.add("jakarta.servlet.jsp");
     _jspx_imports_classes = new java.util.LinkedHashSet<>(4);
     _jspx_imports_classes.add("java.util.List");
-    _jspx_imports_classes.add("sercoplus.modelo.Usuario");
-    _jspx_imports_classes.add("sercoplus.modelo.MovimientoKardex");
+    _jspx_imports_classes.add("ferreteriacruz.modelo.Usuario");
+    _jspx_imports_classes.add("ferreteriacruz.modelo.MovimientoKardex");
   }
 
   private volatile jakarta.el.ExpressionFactory _el_expressionfactory;
@@ -144,7 +144,7 @@ public final class Kardex_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<head>\n");
       out.write("    <meta charset=\"UTF-8\">\n");
       out.write("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
-      out.write("    <title>Sercoplus | Trazabilidad Kardex</title>\n");
+      out.write("    <title>FerreteriaCruz | Trazabilidad Kardex</title>\n");
       out.write("    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap\" rel=\"stylesheet\">\n");
       out.write("    <link rel=\"stylesheet\" href=\"");
       out.print(request.getContextPath());
@@ -161,7 +161,7 @@ public final class Kardex_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <div class=\"header-title\">\n");
       out.write("                <img src=\"");
       out.print(request.getContextPath());
-      out.write("/assets/img/logo_sercoplus.png\" alt=\"Sercoplus\" class=\"logo-img\" onerror=\"this.src='https://via.placeholder.com/150x45/111827/E63946?text=SERCOPLUS'\">\n");
+      out.write("/assets/img/logo_ferreteriacruz.png\" alt=\"FerreteriaCruz\" class=\"logo-img\" onerror=\"this.src='https://via.placeholder.com/150x45/111827/E63946?text=FERRETERIACRUZ'\">\n");
       out.write("                <h2 class=\"text-white\">\n");
       out.write("                    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" width=\"24\" height=\"24\" class=\"text-blue\">\n");
       out.write("                        <path d=\"M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z\"></path>\n");

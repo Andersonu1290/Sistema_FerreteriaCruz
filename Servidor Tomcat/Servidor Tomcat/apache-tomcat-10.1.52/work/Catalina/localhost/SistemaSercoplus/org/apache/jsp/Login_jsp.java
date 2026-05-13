@@ -127,7 +127,7 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
     Cookie[] cookies = request.getCookies();
     if (cookies != null) {
         for (Cookie c : cookies) {
-            if (c.getName().equals("userSercoplus")) {
+            if (c.getName().equals("userFerreteriaCruz")) {
                 usuarioGuardado = c.getValue();
                 checkRecordar = "checked";
             }
@@ -140,7 +140,7 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<head>\n");
       out.write("    <meta charset=\"UTF-8\">\n");
       out.write("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
-      out.write("    <title>Sercoplus | Acceso Corporativo</title>\n");
+      out.write("    <title>FerreteriaCruz | Acceso Corporativo</title>\n");
       out.write("    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap\" rel=\"stylesheet\">\n");
       out.write("    <link rel=\"stylesheet\" href=\"");
       out.print(request.getContextPath());
@@ -157,7 +157,7 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <div class=\"logo-wrapper\">\n");
       out.write("                <img src=\"");
       out.print(request.getContextPath());
-      out.write("/assets/img/logo_sercoplus.png\" alt=\"Sercoplus S.A.C.\" class=\"logo-login\" onerror=\"this.src='https://via.placeholder.com/250x80/1E1E1E/E63946?text=SERCOPLUS+S.A.C.'\">\n");
+      out.write("/assets/img/logo_ferreteriacruz.png\" alt=\"FerreteriaCruz\" class=\"logo-login\" onerror=\"this.src='https://via.placeholder.com/250x80/1E1E1E/E63946?text=FERRETERIACRUZ'\">\n");
       out.write("            </div>\n");
       out.write("            \n");
       out.write("            <div class=\"login-header\">\n");

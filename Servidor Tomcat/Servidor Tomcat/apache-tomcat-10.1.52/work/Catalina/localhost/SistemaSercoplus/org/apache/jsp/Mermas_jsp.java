@@ -12,8 +12,8 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.jsp.*;
 import java.util.List;
-import sercoplus.modelo.SerieHardware;
-import sercoplus.modelo.Usuario;
+import ferreteriacruz.modelo.Series;
+import ferreteriacruz.modelo.Usuario;
 
 public final class Mermas_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent,
@@ -36,8 +36,8 @@ public final class Mermas_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_imports_packages.add("jakarta.servlet.jsp");
     _jspx_imports_classes = new java.util.LinkedHashSet<>(4);
     _jspx_imports_classes.add("java.util.List");
-    _jspx_imports_classes.add("sercoplus.modelo.Usuario");
-    _jspx_imports_classes.add("sercoplus.modelo.SerieHardware");
+    _jspx_imports_classes.add("ferreteriacruz.modelo.Usuario");
+    _jspx_imports_classes.add("ferreteriacruz.modelo.Series");
   }
 
   private volatile jakarta.el.ExpressionFactory _el_expressionfactory;
@@ -136,15 +136,15 @@ public final class Mermas_jsp extends org.apache.jasper.runtime.HttpJspBase
         response.sendRedirect("Login.jsp");
         return;
     }
-    List<SerieHardware> disponibles = (List<SerieHardware>) request.getAttribute("seriesDisponibles");
-    List<SerieHardware> mermadas = (List<SerieHardware>) request.getAttribute("seriesMermadas");
+    List<Series> disponibles = (List<Series>) request.getAttribute("seriesDisponibles");
+    List<Series> mermadas = (List<Series>) request.getAttribute("seriesMermadas");
 
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html lang=\"es\">\n");
       out.write("<head>\n");
       out.write("    <meta charset=\"UTF-8\">\n");
-      out.write("    <title>Sercoplus | Gestión de Mermas</title>\n");
+      out.write("    <title>FerreteriaCruz | Gestión de Mermas</title>\n");
       out.write("    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap\" rel=\"stylesheet\">\n");
       out.write("    <link rel=\"stylesheet\" href=\"");
       out.print(request.getContextPath());
@@ -202,7 +202,7 @@ public final class Mermas_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <tbody>\n");
       out.write("                            ");
  if(disponibles != null && !disponibles.isEmpty()) { 
-                                   for(SerieHardware s : disponibles) { 
+                                   for(Series s : disponibles) { 
       out.write("\n");
       out.write("                            <tr>\n");
       out.write("                                <td class=\"font-mono text-muted text-xs\">");
@@ -260,7 +260,7 @@ public final class Mermas_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <tbody>\n");
       out.write("                            ");
  if(mermadas != null && !mermadas.isEmpty()) { 
-                                   for(SerieHardware m : mermadas) { 
+                                   for(Series m : mermadas) { 
       out.write("\n");
       out.write("                            <tr class=\"row-disabled\">\n");
       out.write("                                <td class=\"font-mono text-muted text-xs\">");

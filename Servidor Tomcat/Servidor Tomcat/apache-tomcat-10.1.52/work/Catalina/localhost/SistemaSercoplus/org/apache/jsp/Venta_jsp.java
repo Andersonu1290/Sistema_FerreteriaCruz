@@ -12,9 +12,9 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.jsp.*;
 import java.util.List;
-import sercoplus.modelo.Producto;
-import sercoplus.servicio.ServicioProducto;
-import sercoplus.modelo.Usuario;
+import ferreteriacruz.modelo.Producto;
+import ferreteriacruz.servicio.ServicioProducto;
+import ferreteriacruz.modelo.Usuario;
 
 public final class Venta_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent,
@@ -36,10 +36,10 @@ public final class Venta_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_imports_packages.add("jakarta.servlet.http");
     _jspx_imports_packages.add("jakarta.servlet.jsp");
     _jspx_imports_classes = new java.util.LinkedHashSet<>(6);
-    _jspx_imports_classes.add("sercoplus.modelo.Producto");
+    _jspx_imports_classes.add("ferreteriacruz.modelo.Producto");
     _jspx_imports_classes.add("java.util.List");
-    _jspx_imports_classes.add("sercoplus.modelo.Usuario");
-    _jspx_imports_classes.add("sercoplus.servicio.ServicioProducto");
+    _jspx_imports_classes.add("ferreteriacruz.modelo.Usuario");
+    _jspx_imports_classes.add("ferreteriacruz.servicio.ServicioProducto");
   }
 
   private volatile jakarta.el.ExpressionFactory _el_expressionfactory;
@@ -148,7 +148,7 @@ public final class Venta_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<head>\n");
       out.write("    <meta charset=\"UTF-8\">\n");
       out.write("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
-      out.write("    <title>Sercoplus | Registro de Salidas</title>\n");
+      out.write("    <title>ferreteriaCruz | Registro de Salidas</title>\n");
       out.write("    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap\" rel=\"stylesheet\">\n");
       out.write("    <link rel=\"stylesheet\" href=\"");
       out.print(request.getContextPath());
@@ -165,7 +165,7 @@ public final class Venta_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <div class=\"header-title\">\n");
       out.write("                <img src=\"");
       out.print(request.getContextPath());
-      out.write("/assets/img/logo_sercoplus.png\" alt=\"Sercoplus\" class=\"logo-img\" onerror=\"this.src='https://via.placeholder.com/150x45/111827/E63946?text=SERCOPLUS'\">\n");
+      out.write("/assets/img/logo_ferreteriacruz.png\" alt=\"FerreteriaCruz\" class=\"logo-img\" onerror=\"this.src='https://via.placeholder.com/150x45/111827/E63946?text=FERRETERIACRUZ'\">\n");
       out.write("                <h2>\n");
       out.write("                    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" width=\"24\" height=\"24\" class=\"text-blue\">\n");
       out.write("                        <circle cx=\"9\" cy=\"21\" r=\"1\"></circle><circle cx=\"20\" cy=\"21\" r=\"1\"></circle>\n");
@@ -209,13 +209,13 @@ public final class Venta_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <option value=\"\" disabled selected>-- Inicialice escaneo o seleccione de la lista --</option>\n");
       out.write("                    ");
 
-                        sercoplus.dao.SerieHardwareDAO serieDao = new sercoplus.dao.SerieHardwareDAO();
+                        ferreteriacruz.dao.SeriesDAO serieDao = new ferreteriacruz.dao.SeriesDAO();
                         if (listaProductos != null) {
                             for (Producto p : listaProductos) {
                                 if (p.getStockActual() > 0) {
-                                    java.util.List<sercoplus.modelo.SerieHardware> seriesDisp = serieDao.listarSeriesDisponibles(p.getIdProducto());
+                                    java.util.List<ferreteriacruz.modelo.Series> seriesDisp = serieDao.listarSeriesDisponibles(p.getIdProducto());
                                     StringBuilder sbSeries = new StringBuilder();
-                                    for(sercoplus.modelo.SerieHardware s : seriesDisp) {
+                                    for(ferreteriacruz.modelo.Series s : seriesDisp) {
                                         sbSeries.append(s.getNumeroSerie()).append(",");
                                     }
                                     String strSeries = sbSeries.toString();

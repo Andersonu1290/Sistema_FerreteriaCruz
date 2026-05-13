@@ -41,7 +41,7 @@ public class VentaDAO {
                 PreparedStatement psInsCli = con.prepareStatement(sqlInsCli, Statement.RETURN_GENERATED_KEYS);
                 psInsCli.setString(1, docCliente);
                 psInsCli.setString(2, nombreCliente);
-                psInsCli.setString(3, correoCliente != null && !correoCliente.isEmpty() ? correoCliente : "sin_correo@sercoplus.com");
+                psInsCli.setString(3, correoCliente != null && !correoCliente.isEmpty() ? correoCliente : "sin_correo@ferreteriacruz.com");
                 psInsCli.executeUpdate();
                 ResultSet rsKeys = psInsCli.getGeneratedKeys();
                 if(rsKeys.next()) { idCliente = rsKeys.getInt(1); }
@@ -64,7 +64,7 @@ public class VentaDAO {
             psStock.setInt(1, idProducto);
             psStock.executeUpdate();
 
-            String sqlSerie = "UPDATE series_hardware SET estado = 'ASIGNADO' WHERE numero_serie = ? AND id_producto = ?";
+            String sqlSerie = "UPDATE series SET estado = 'ASIGNADO' WHERE numero_serie = ? AND id_producto = ?";
             PreparedStatement psSerie = con.prepareStatement(sqlSerie);
             psSerie.setString(1, nroSerie);
             psSerie.setInt(2, idProducto);
@@ -144,7 +144,7 @@ public class VentaDAO {
             psStock.executeUpdate();
             
 
-            String sqlSerie = "UPDATE series_hardware SET estado = 'DISPONIBLE' WHERE numero_serie = ?";
+            String sqlSerie = "UPDATE series SET estado = 'DISPONIBLE' WHERE numero_serie = ?";
             PreparedStatement psSerie = con.prepareStatement(sqlSerie);
             psSerie.setString(1, nroSerie);
             psSerie.executeUpdate();

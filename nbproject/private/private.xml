@@ -4,7 +4,33 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/web/Categorias.jsp</file>
-            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/src/java/ferreteriacruz/config/Conexion.java</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/Servidor%20Tomcat/Servidor%20Tomcat/apache-tomcat-10.1.52/work/Catalina/localhost/SistemaSercoplus/org/apache/jsp/Login_jsp.java</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/src/java/ferreteriacruz/modelo/Series.java</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/web/ProductoForm.jsp</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/src/java/ferreteriacruz/controlador/MermaServlet.java</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/src/java/ferreteriacruz/dao/SeriesDAO.java</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/Servidor%20Tomcat/Servidor%20Tomcat/apache-tomcat-10.1.52/work/Catalina/localhost/SistemaSercoplus/org/apache/jsp/Usuarios_jsp.java</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/web/index.jsp</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/src/java/ferreteriacruz/patrones/factory/Factura.java</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/Servidor%20Tomcat/Servidor%20Tomcat/apache-tomcat-10.1.52/work/Catalina/localhost/SistemaSercoplus/org/apache/jsp/Inventario_jsp.java</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/web/Kardex.jsp</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/Servidor%20Tomcat/Servidor%20Tomcat/apache-tomcat-10.1.52/work/Catalina/localhost/SistemaSercoplus/org/apache/jsp/Mermas_jsp.java</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/web/ConfirmacionVenta.jsp</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/web/Reportes.jsp</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/Servidor%20Tomcat/Servidor%20Tomcat/apache-tomcat-10.1.52/work/Catalina/localhost/SistemaSercoplus/org/apache/jsp/Reportes_jsp.java</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/src/java/ferreteriacruz/patrones/factory/Boleta.java</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/web/HistorialVentas.jsp</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/web/Venta.jsp</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/web/Inventario.jsp</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/web/Login.jsp</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/web/Mermas.jsp</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/Servidor%20Tomcat/Servidor%20Tomcat/apache-tomcat-10.1.52/work/Catalina/localhost/SistemaSercoplus/org/apache/jsp/Venta_jsp.java</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/web/Usuarios.jsp</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/Servidor%20Tomcat/Servidor%20Tomcat/apache-tomcat-10.1.52/work/Catalina/localhost/SistemaSercoplus/org/apache/jsp/Categorias_jsp.java</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/src/java/ferreteriacruz/dao/VentaDAO.java</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/Servidor%20Tomcat/Servidor%20Tomcat/apache-tomcat-10.1.52/work/Catalina/localhost/SistemaSercoplus/org/apache/jsp/Kardex_jsp.java</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/src/java/ferreteriacruz/servicio/ServicioProducto.java</file>
+            <file>file:/C:/Users/Anderson/Downloads/Sistema%20FerreteriaCruz/SistemaFerreteriaCruz/Servidor%20Tomcat/Servidor%20Tomcat/apache-tomcat-10.1.52/work/Catalina/localhost/SistemaSercoplus/org/apache/jsp/ProductoForm_jsp.java</file>
         </group>
     </open-files>
 </project-private>

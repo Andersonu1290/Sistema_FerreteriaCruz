@@ -11,9 +11,9 @@ package ferreteriacruz.servicio;
 
 import java.util.List;
 import ferreteriacruz.dao.ProductoDAOImpl;
-import ferreteriacruz.dao.SerieHardwareDAO;
+import ferreteriacruz.dao.SeriesDAO;
 import ferreteriacruz.modelo.Producto;
-import ferreteriacruz.modelo.SerieHardware;
+import ferreteriacruz.modelo.Series;
 
 public class ServicioProducto implements IConsultaStock, IRegistroProducto {
     
@@ -73,10 +73,10 @@ public class ServicioProducto implements IConsultaStock, IRegistroProducto {
     }
 
     private void generarSeriesHardware(int idProducto, String sku, int cantidad) {
-        SerieHardwareDAO serieDao = new SerieHardwareDAO();
+        SeriesDAO serieDao = new SeriesDAO();
 
         for (int i = 0; i < cantidad; i++) {
-            SerieHardware serie = new SerieHardware();
+            Series serie = new Series();
             serie.setIdProducto(idProducto);
             
             String snUnico = sku + "-" + System.currentTimeMillis() + "-" + i;
@@ -88,7 +88,7 @@ public class ServicioProducto implements IConsultaStock, IRegistroProducto {
     }
 
     private void removerSeriesHardware(int idProducto, int cantidad) {
-        SerieHardwareDAO serieDao = new SerieHardwareDAO();
+        SeriesDAO serieDao = new SeriesDAO();
         serieDao.eliminarSeriesDisponibles(idProducto, cantidad);
     }
     

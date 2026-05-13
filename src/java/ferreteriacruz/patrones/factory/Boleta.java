@@ -13,7 +13,7 @@ public class Boleta implements IComprobante {
     @Override
     public String generar(String datosVenta) {
         return "=========================================\n" +
-               "   [SISTEMA SERCOPLUS] - BOLETA EMITIDA  \n" +
+               "   [SISTEMA FERRETERIACRUZ] - BOLETA EMITIDA  \n" +
                "   DATOS: " + datosVenta + "\n" +
                "=========================================";
     }

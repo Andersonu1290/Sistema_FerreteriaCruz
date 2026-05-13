@@ -16,14 +16,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import ferreteriacruz.config.Conexion;
-import ferreteriacruz.modelo.SerieHardware;
+import ferreteriacruz.modelo.Series;
 
 public class MermaDAO {
 
-    public List<SerieHardware> listarSeries(String estadoFiltro) {
-        List<SerieHardware> lista = new ArrayList<>();
+    public List<Series> listarSeries(String estadoFiltro) {
+        List<Series> lista = new ArrayList<>();
         String sql = "SELECT s.*, p.nombre, p.codigo_SKU " +
-                     "FROM series_hardware s " +
+                     "FROM series s " +
                      "INNER JOIN productos p ON s.id_producto = p.id_producto " +
                      "WHERE s.estado = ?";
         try (Connection con = Conexion.getInstancia().getConexion();
@@ -31,7 +31,7 @@ public class MermaDAO {
             ps.setString(1, estadoFiltro);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    SerieHardware s = new SerieHardware();
+                    Series s = new Series();
                     s.setIdSerie(rs.getInt("id_serie"));
                     s.setNumeroSerie(rs.getString("numero_serie"));
                     s.setIdProducto(rs.getInt("id_producto"));
@@ -53,7 +53,7 @@ public class MermaDAO {
             con.setAutoCommit(false);
 
             int idProducto = -1;
-            String sqlCheck = "SELECT id_producto FROM series_hardware WHERE numero_serie = ? AND estado = 'DISPONIBLE'";
+            String sqlCheck = "SELECT id_producto FROM series WHERE numero_serie = ? AND estado = 'DISPONIBLE'";
             try(PreparedStatement psCheck = con.prepareStatement(sqlCheck)){
                 psCheck.setString(1, nroSerie);
                 ResultSet rs = psCheck.executeQuery();
@@ -61,7 +61,7 @@ public class MermaDAO {
                 else throw new Exception("La serie no está disponible.");
             }
 
-            String sqlUpd = "UPDATE series_hardware SET estado = 'MERMA' WHERE numero_serie = ?";
+            String sqlUpd = "UPDATE series SET estado = 'MERMA' WHERE numero_serie = ?";
             try(PreparedStatement psUpd = con.prepareStatement(sqlUpd)){
                 psUpd.setString(1, nroSerie);
                 psUpd.executeUpdate();

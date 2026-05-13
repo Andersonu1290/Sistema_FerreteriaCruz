@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="ferreteriacruz.modelo.SerieHardware"%>
+<%@page import="ferreteriacruz.modelo.Series"%>
 <%@page import="ferreteriacruz.modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -14,8 +14,8 @@
         response.sendRedirect("Login.jsp");
         return;
     }
-    List<SerieHardware> disponibles = (List<SerieHardware>) request.getAttribute("seriesDisponibles");
-    List<SerieHardware> mermadas = (List<SerieHardware>) request.getAttribute("seriesMermadas");
+    List<Series> disponibles = (List<Series>) request.getAttribute("seriesDisponibles");
+    List<Series> mermadas = (List<Series>) request.getAttribute("seriesMermadas");
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -74,7 +74,7 @@
                         </thead>
                         <tbody>
                             <% if(disponibles != null && !disponibles.isEmpty()) { 
-                                   for(SerieHardware s : disponibles) { %>
+                                   for(Series s : disponibles) { %>
                             <tr>
                                 <td class="font-mono text-muted text-xs"><%= s.getCodigoSKU() %></td>
                                 <td class="td-nombre"><%= s.getNombreProducto() %></td>
@@ -118,7 +118,7 @@
                         </thead>
                         <tbody>
                             <% if(mermadas != null && !mermadas.isEmpty()) { 
-                                   for(SerieHardware m : mermadas) { %>
+                                   for(Series m : mermadas) { %>
                             <tr class="row-disabled">
                                 <td class="font-mono text-muted text-xs"><%= m.getCodigoSKU() %></td>
                                 <td class="td-nombre"><%= m.getNombreProducto() %></td>

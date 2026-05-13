@@ -99,8 +99,8 @@ public class ProductoDAOImpl implements IProductoDAO {
             // Desactivar autocommit para usar transacciones
             con.setAutoCommit(false); 
 
-            // 1. Eliminar dependencias en series_hardware
-            String sqlSeries = "DELETE FROM series_hardware WHERE id_producto=?";
+            // 1. Eliminar dependencias en series
+            String sqlSeries = "DELETE FROM series WHERE id_producto=?";
             PreparedStatement psSeries = con.prepareStatement(sqlSeries);
             psSeries.setInt(1, id);
             psSeries.executeUpdate();

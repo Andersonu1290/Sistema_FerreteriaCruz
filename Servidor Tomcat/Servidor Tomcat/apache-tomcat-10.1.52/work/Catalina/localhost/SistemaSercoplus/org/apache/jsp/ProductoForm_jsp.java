@@ -11,10 +11,10 @@ package org.apache.jsp;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.jsp.*;
-import sercoplus.modelo.Producto;
-import sercoplus.modelo.Usuario;
+import ferreteriacruz.modelo.Producto;
+import ferreteriacruz.modelo.Usuario;
 import java.util.List;
-import sercoplus.modelo.Categoria;
+import ferreteriacruz.modelo.Categoria;
 
 public final class ProductoForm_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent,
@@ -36,10 +36,10 @@ public final class ProductoForm_jsp extends org.apache.jasper.runtime.HttpJspBas
     _jspx_imports_packages.add("jakarta.servlet.http");
     _jspx_imports_packages.add("jakarta.servlet.jsp");
     _jspx_imports_classes = new java.util.LinkedHashSet<>(6);
-    _jspx_imports_classes.add("sercoplus.modelo.Producto");
+    _jspx_imports_classes.add("ferreteriacruz.modelo.Producto");
     _jspx_imports_classes.add("java.util.List");
-    _jspx_imports_classes.add("sercoplus.modelo.Categoria");
-    _jspx_imports_classes.add("sercoplus.modelo.Usuario");
+    _jspx_imports_classes.add("ferreteriacruz.modelo.Categoria");
+    _jspx_imports_classes.add("ferreteriacruz.modelo.Usuario");
   }
 
   private volatile jakarta.el.ExpressionFactory _el_expressionfactory;
@@ -146,7 +146,7 @@ public final class ProductoForm_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("<html lang=\"es\">\n");
       out.write("<head>\n");
       out.write("    <meta charset=\"UTF-8\">\n");
-      out.write("    <title>Sercoplus | Registro de Hardware</title>\n");
+      out.write("    <title>FerreteriaCruz | Registro de Hardware</title>\n");
       out.write("    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap\" rel=\"stylesheet\">\n");
       out.write("    <link rel=\"stylesheet\" href=\"");
       out.print(request.getContextPath());

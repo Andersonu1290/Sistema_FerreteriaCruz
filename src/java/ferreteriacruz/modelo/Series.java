@@ -9,7 +9,7 @@ package ferreteriacruz.modelo;
  * @author Anderson
  */
 
-public class SerieHardware {
+public class Series {
     private int idSerie;
     private String numeroSerie;
     private int idProducto;
@@ -18,7 +18,7 @@ public class SerieHardware {
     private String nombreProducto;
     private String codigoSKU;
 
-    public SerieHardware() {}
+    public Series() {}
 
     public int getIdSerie() { return idSerie; }
     public void setIdSerie(int idSerie) { this.idSerie = idSerie; }

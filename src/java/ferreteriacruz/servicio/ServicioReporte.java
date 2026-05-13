@@ -43,7 +43,7 @@ public class ServicioReporte implements IGeneraReporte {
                 if (rs.next()) kpis.put("totalVentas", rs.getInt("total"));
             }
             
-            String sqlMermas = "SELECT COUNT(id_serie) as total FROM series_hardware WHERE estado = 'MERMA'";
+            String sqlMermas = "SELECT COUNT(id_serie) as total FROM series WHERE estado = 'MERMA'";
             try (PreparedStatement ps = con.prepareStatement(sqlMermas); ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) kpis.put("totalMermas", rs.getInt("total"));
             }

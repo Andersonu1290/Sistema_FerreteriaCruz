@@ -14,8 +14,8 @@ import jakarta.servlet.jsp.*;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
-import sercoplus.modelo.Venta;
-import sercoplus.modelo.Usuario;
+import ferreteriacruz.modelo.Venta;
+import ferreteriacruz.modelo.Usuario;
 
 public final class Reportes_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent,
@@ -38,8 +38,8 @@ public final class Reportes_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_imports_packages.add("jakarta.servlet.jsp");
     _jspx_imports_classes = new java.util.LinkedHashSet<>(7);
     _jspx_imports_classes.add("java.util.List");
-    _jspx_imports_classes.add("sercoplus.modelo.Usuario");
-    _jspx_imports_classes.add("sercoplus.modelo.Venta");
+    _jspx_imports_classes.add("ferreteriacruz.modelo.Usuario");
+    _jspx_imports_classes.add("ferreteriacruz.modelo.Venta");
     _jspx_imports_classes.add("java.util.Map");
     _jspx_imports_classes.add("java.text.SimpleDateFormat");
   }
@@ -171,7 +171,7 @@ public final class Reportes_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html lang=\"es\">\n");
       out.write("<head>\n");
       out.write("    <meta charset=\"UTF-8\">\n");
-      out.write("    <title>Sercoplus | Intelligence Dashboard</title>\n");
+      out.write("    <title>FerreteriaCruz | Intelligence Dashboard</title>\n");
       out.write("    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap\" rel=\"stylesheet\">\n");
       out.write("    <link rel=\"stylesheet\" href=\"");
       out.print(request.getContextPath());
@@ -188,7 +188,7 @@ public final class Reportes_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <div class=\"header-title\">\n");
       out.write("                <img src=\"");
       out.print(request.getContextPath());
-      out.write("/assets/img/logo_sercoplus.png\" alt=\"Sercoplus\" class=\"logo-img\">\n");
+      out.write("/assets/img/logo_ferreteriacruz.png\" alt=\"FerreteriaCruz\" class=\"logo-img\">\n");
       out.write("                <h2>\n");
       out.write("                    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--brand-blue)\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" width=\"24\" height=\"24\" style=\"vertical-align: bottom;\">\n");
       out.write("                        <rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\" ry=\"2\"></rect>\n");

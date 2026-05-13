@@ -12,8 +12,8 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.jsp.*;
 import java.util.List;
-import sercoplus.modelo.Categoria;
-import sercoplus.modelo.Usuario;
+import ferreteriacruz.modelo.Categoria;
+import ferreteriacruz.modelo.Usuario;
 
 public final class Categorias_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent,
@@ -36,8 +36,8 @@ public final class Categorias_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_imports_packages.add("jakarta.servlet.jsp");
     _jspx_imports_classes = new java.util.LinkedHashSet<>(4);
     _jspx_imports_classes.add("java.util.List");
-    _jspx_imports_classes.add("sercoplus.modelo.Categoria");
-    _jspx_imports_classes.add("sercoplus.modelo.Usuario");
+    _jspx_imports_classes.add("ferreteriacruz.modelo.Categoria");
+    _jspx_imports_classes.add("ferreteriacruz.modelo.Usuario");
   }
 
   private volatile jakarta.el.ExpressionFactory _el_expressionfactory;
@@ -144,7 +144,7 @@ public final class Categorias_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html lang=\"es\">\n");
       out.write("<head>\n");
       out.write("    <meta charset=\"UTF-8\">\n");
-      out.write("    <title>Sercoplus | Gestión de Categorías</title>\n");
+      out.write("    <title>FerreteriaCruz | Gestión de Categorías</title>\n");
       out.write("    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap\" rel=\"stylesheet\">\n");
       out.write("    <link rel=\"stylesheet\" href=\"");
       out.print(request.getContextPath());

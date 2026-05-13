@@ -12,12 +12,12 @@ package ferreteriacruz.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import ferreteriacruz.config.Conexion;
-import ferreteriacruz.modelo.SerieHardware;
+import ferreteriacruz.modelo.Series;
 
-public class SerieHardwareDAO {
+public class SeriesDAO {
     
-    public boolean registrarSerie(SerieHardware serie) {
-        String sql = "INSERT INTO series_hardware (numero_serie, id_producto, estado) VALUES (?, ?, ?)";
+    public boolean registrarSerie(Series serie) {
+        String sql = "INSERT INTO series (numero_serie, id_producto, estado) VALUES (?, ?, ?)";
 
         try (Connection con = Conexion.getInstancia().getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -34,9 +34,9 @@ public class SerieHardwareDAO {
     }
 
     public boolean eliminarSeriesDisponibles(int idProducto, int cantidad) {
-        String sql = "DELETE FROM series_hardware WHERE id_serie IN (" +
+        String sql = "DELETE FROM series WHERE id_serie IN (" +
                      "  SELECT id FROM (" +
-                     "    SELECT id_serie AS id FROM series_hardware " +
+                     "    SELECT id_serie AS id FROM series " +
                      "    WHERE id_producto = ? AND estado = 'DISPONIBLE' " +
                      "    ORDER BY id_serie DESC LIMIT ?" +
                      "  ) AS temp" +
@@ -55,9 +55,9 @@ public class SerieHardwareDAO {
         }
     }
 
-    public java.util.List<ferreteriacruz.modelo.SerieHardware> listarSeriesDisponibles(int idProducto) {
-        java.util.List<ferreteriacruz.modelo.SerieHardware> lista = new java.util.ArrayList<>();
-        String sql = "SELECT * FROM series_hardware WHERE id_producto = ? AND estado = 'DISPONIBLE'";
+    public java.util.List<Series> listarSeriesDisponibles(int idProducto) {
+        java.util.List<Series> lista = new java.util.ArrayList<>();
+        String sql = "SELECT * FROM series WHERE id_producto = ? AND estado = 'DISPONIBLE'";
         
         try (java.sql.Connection con = ferreteriacruz.config.Conexion.getInstancia().getConexion();
              java.sql.PreparedStatement ps = con.prepareStatement(sql)) {
@@ -65,7 +65,7 @@ public class SerieHardwareDAO {
             ps.setInt(1, idProducto);
             try (java.sql.ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    ferreteriacruz.modelo.SerieHardware s = new ferreteriacruz.modelo.SerieHardware();
+                    Series s = new Series();
                     s.setIdSerie(rs.getInt("id_serie"));
                     s.setNumeroSerie(rs.getString("numero_serie"));
                     s.setEstado(rs.getString("estado"));
