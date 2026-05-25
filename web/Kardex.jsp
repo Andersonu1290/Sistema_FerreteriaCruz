@@ -1,7 +1,7 @@
 <%-- 
     Document   : Kardex
-    Created on : 25 feb 2026
-    Author     : Grupo 4 (Sercoplus S.A.C.)
+    Created on : 10 may 2026
+    Author     : Grupo 2 (Ferreteria Cruz)
 --%>
 
 <%@page import="java.util.List"%>
@@ -32,7 +32,7 @@
         
         <div class="header-tech">
             <div class="header-title">
-                <img src="<%=request.getContextPath()%>/assets/img/logo_sercoplus.png" alt="Sercoplus" class="logo-img" onerror="this.src='https://via.placeholder.com/150x45/111827/E63946?text=SERCOPLUS'">
+                <img src="<%=request.getContextPath()%>/assets/img/logo_ferreteriacruz.png" alt="FerreteriaCruz" class="logo-img" onerror="this.src='https://via.placeholder.com/150x45/111827/E63946?text=FERRETERIACRUZ'">
                 <h2 class="text-white">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" class="text-blue">
                         <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>

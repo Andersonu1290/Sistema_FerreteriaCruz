@@ -1,6 +1,6 @@
 <%-- 
     Document   : ProductoForm
-    Created on : 26 feb 2026, 12:22:39
+    Created on : 10 may 2026, 12:22:39
     Author     : Anderson
 --%>
 
@@ -35,7 +35,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;">
                         <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
                     </svg>
-                    <%= esEdicion ? "Modificar Componente" : "Registrar Nuevo Componente" %>
+                    <%= esEdicion ? "Modificar Producto" : "Registrar Nuevo Producto" %>
                 </h2>
             </div>
             <a href="ProductoServlet?accion=listar" class="btn-tech">Cancelar y Volver</a>
@@ -47,10 +47,10 @@
                 <input type="hidden" name="txtId" value="<%= esEdicion ? p.getIdProducto() : "" %>">
 
                 <label class="form-label">Código SKU único:</label>
-                <input type="text" name="txtSku" class="input-tech input-mono" required placeholder="Ej. GPU-NV-4090" value="<%= esEdicion ? p.getCodigoSKU() : "" %>">
+                <input type="text" name="txtSku" class="input-tech input-mono" required placeholder="Ej. Cer" value="<%= esEdicion ? p.getCodigoSKU() : "" %>">
 
                 <label class="form-label">Nombre / Especificación del Producto:</label>
-                <input type="text" name="txtNombre" class="input-tech" required placeholder="Ej. NVIDIA RTX 4090 24GB" value="<%= esEdicion ? p.getNombre() : "" %>">
+                <input type="text" name="txtNombre" class="input-tech" required placeholder="Ej. Cierra" value="<%= esEdicion ? p.getNombre() : "" %>">
                 
                 <label class="form-label">Familia / Categoría del Componente:</label>
                 <div class="d-flex align-center gap-15 mb-25">

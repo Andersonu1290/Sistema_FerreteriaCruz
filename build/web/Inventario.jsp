@@ -1,7 +1,7 @@
 <%-- 
     Document   : Inventario
-    Created on : 25 feb 2026, 9:40:23
-    Author     : Grupo 4 (Sercoplus S.A.C.)
+    Created on : 10 may 2026, 9:40:23
+    Author     : Grupo 2 (Ferreteria Cruz)
 --%>
 
 <%@page import="java.util.List"%>
@@ -47,7 +47,7 @@
         
         <div class="header-tech">
             <div class="header-title">
-                <img src="<%=request.getContextPath()%>/assets/img/logo_sercoplus.png" alt="Sercoplus" class="logo-img" onerror="this.src='https://via.placeholder.com/150x45/111827/E63946?text=SERCOPLUS'">
+                <img src="<%=request.getContextPath()%>/assets/img/logo_ferreteriacruz.png" alt="ferreteriacruz" class="logo-img" onerror="this.src='https://via.placeholder.com/150x45/111827/E63946?text=FERRETERIACRUZ'">
                 <h2 class="text-white">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" class="text-blue">
                         <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>

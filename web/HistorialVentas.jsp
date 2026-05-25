@@ -1,6 +1,6 @@
 <%-- 
     Document   : HistorialVentas
-    Created on : 26 feb 2026, 19:15:27
+    Created on : 10 may 2026, 19:15:27
     Author     : Anderson
 --%>
 

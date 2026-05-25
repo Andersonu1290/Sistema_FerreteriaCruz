@@ -1,6 +1,6 @@
 <%-- 
     Document   : ConfirmacionVenta
-    Created on : 26 feb 2026, 10:45:59
+    Created on : 10 may 2026, 10:45:59
     Author     : Anderson
 --%>
 
@@ -77,7 +77,7 @@
                     <div class="watermark">PAGADO</div>
                     
                     <div class="receipt-header">
-                        <img src="<%=request.getContextPath()%>/assets/img/logo_sercoplus.png" alt="Sercoplus" class="receipt-logo" onerror="this.src='https://via.placeholder.com/200x60/ffffff/000000?text=SERCOPLUS'">
+                        <img src="<%=request.getContextPath()%>/assets/img/logo_ferreteriacruz.png" alt="FerreteriaCruz" class="receipt-logo" onerror="this.src='https://via.placeholder.com/200x60/ffffff/000000?text=FERRETERIACRUZ'">
                         
                         <div class="company-info">
                             <strong>SERCOPLUS S.A.C. - HARDWARE & TECH</strong><br>

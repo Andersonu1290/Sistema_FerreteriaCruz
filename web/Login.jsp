@@ -1,7 +1,7 @@
 <%-- 
     Document   : Login
-    Created on : 25 feb 2026, 10:10:21
-    Author     : Grupo 4 (Sercoplus S.A.C.)
+    Created on : 10 may 2026, 10:10:21
+    Author     : Grupo 2 (Ferreteria Cruz)
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,7 +11,7 @@
     Cookie[] cookies = request.getCookies();
     if (cookies != null) {
         for (Cookie c : cookies) {
-            if (c.getName().equals("userSercoplus")) {
+            if (c.getName().equals("userFerreteriaCruz")) {
                 usuarioGuardado = c.getValue();
                 checkRecordar = "checked";
             }
@@ -34,7 +34,7 @@
         <div class="login-container" style="box-shadow: 0 20px 60px rgba(0,0,0,0.8); border-top: 4px solid var(--brand-blue);">
             
             <div class="logo-wrapper">
-                <img src="<%=request.getContextPath()%>/assets/img/logo_sercoplus.png" alt="Sercoplus S.A.C." class="logo-login" onerror="this.src='https://via.placeholder.com/250x80/1E1E1E/E63946?text=SERCOPLUS+S.A.C.'">
+                <img src="<%=request.getContextPath()%>/assets/img/logo_ferreteriacruz.png" alt="FerreteriaCruz" class="logo-login" onerror="this.src='https://via.placeholder.com/250x80/1E1E1E/E63946?text=FERRETERIACRUZ'">
             </div>
             
             <div class="login-header">
