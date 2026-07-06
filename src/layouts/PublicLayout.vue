@@ -157,7 +157,7 @@
         <div class="text-slate-400 text-sm">© 2026 Ferreteria Cruz. Todos los derechos reservados.</div>
         <div class="text-slate-400 text-sm font-medium flex items-center gap-2">
           <span>Desarrollado por</span>
-          <span class="bg-white text-medical-dark px-2 py-0.5 rounded font-black text-xs tracking-wider">Grupo 7</span>
+          <span class="bg-white text-medical-dark px-2 py-0.5 rounded font-black text-xs tracking-wider">Grupo 2</span>
         </div>
       </div>
     </footer>
