@@ -52,52 +52,73 @@
                         </tr>
                         <tr v-for="pedido in pedidosWeb" :key="pedido.idVentaCliente">
                             <td>
-                                <span style="font-weight: bold; color: #e2e8f0;">{{ formatearFecha(pedido.fechaPedido) }}</span>
+                                <div class="font-bold">{{ formatearFecha(pedido.fechaPedido) }}</div>
                             </td>
                             <td>
-                                <span style="color: var(--brand-blue); font-weight: 900; display: block;">{{ pedido.nroPedido }}</span>
-                                <span style="font-size: 0.75em; color: #94a3b8; text-transform: uppercase;">MÉTODO: {{ pedido.tipoPago.replace('_', ' ') }}</span>
+                                <div class="font-black text-blue-600 dark:text-blue-400 text-base">{{ pedido.nroPedido }}</div>
+                                <div class="text-[11px] font-bold uppercase mt-1 text-slate-500 dark:text-slate-400">MÉTODO: {{ pedido.tipoPago.replace('_', ' ') }}</div>
                             </td>
                             <td>
-                                <span style="font-weight: bold; color: #e2e8f0;">{{ pedido.nombreCliente }}</span><br>
-                                <span style="font-size: 0.8em; color: #94a3b8;">📞 {{ pedido.telefonoCliente }} | ✉️ {{ pedido.emailCliente }}</span><br>
-                                <span style="font-size: 0.8em; color: #94a3b8;">📍 {{ pedido.direccionEnvio }} {{ pedido.numeroCalle || '' }}, {{ pedido.ciudad }}</span>
+                                <div class="font-bold">{{ pedido.nombreCliente }}</div>
+                                <div class="text-xs mt-1 text-slate-600 dark:text-slate-400">📞 {{ pedido.telefonoCliente }} | ✉️ {{ pedido.emailCliente }}</div>
+                                <div class="text-xs mt-0.5 text-slate-600 dark:text-slate-400">📍 {{ pedido.direccionEnvio }} {{ pedido.numeroCalle || '' }}, {{ pedido.ciudad }}</div>
                             </td>
                             <td>
-                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85em; color: #cbd5e1;">
-                                    <li v-for="item in pedido.detalles" :key="item.idDetalle" style="margin-bottom: 3px;">
-                                        <strong style="color: #fff;">{{ item.cantidad }}x</strong> {{ item.nombreProducto }}
-                                    </li>
-                                </ul>
-                                <span style="font-size: 0.7em; color: #3b82f6; letter-spacing: 1px; text-transform: uppercase; margin-top: 5px; display: block;">🚚 ENVÍO: {{ pedido.tipoEnvio }}</span>
-                                <!-- Muestra el tracking si ya lo enviaron -->
-                                <span v-if="pedido.numeroSeguimiento" style="font-size: 0.7em; color: #10b981; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; display: block;">📍 TRACK: {{ pedido.numeroSeguimiento }}</span>
+                                <div class="text-sm mb-2 text-slate-700 dark:text-slate-300">
+                                    <div v-for="item in pedido.detalles" :key="item.idDetalle" class="mb-1.5 flex items-center gap-2">
+                                        <!-- La esferita para la cantidad de dato -->
+                                        <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-[10px] font-black shrink-0">
+                                            {{ item.cantidad }}
+                                        </span>
+                                        <span class="font-medium">{{ item.nombreProducto }}</span>
+                                    </div>
+                                </div>
+                                <div class="text-[10px] text-blue-600 dark:text-blue-400 font-bold uppercase tracking-widest">🚚 ENVÍO: {{ pedido.tipoEnvio }}</div>
+                                <div v-if="pedido.numeroSeguimiento" class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-widest mt-1">📍 TRACK: {{ pedido.numeroSeguimiento }}</div>
                             </td>
                             <td>
-                                <span style="font-weight: 900; color: #fff; font-size: 1.1em;">S/. {{ Number(pedido.total).toFixed(2) }}</span>
+                                <div class="font-black text-lg">S/. {{ Number(pedido.total).toFixed(2) }}</div>
                             </td>
                             <td class="text-center">
-                                <span :style="obtenerEstiloEstado(pedido.estado)">
+                                <!-- Estados con fondo sólido y la esferita indicadora -->
+                                <span v-if="pedido.estado === 'PENDIENTE'" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-black uppercase tracking-widest bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800/50">
+                                    <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                                    {{ pedido.estado }}
+                                </span>
+                                <span v-else-if="pedido.estado === 'ENVIADO'" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-black uppercase tracking-widest bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50">
+                                    <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                                    {{ pedido.estado }}
+                                </span>
+                                <span v-else-if="pedido.estado === 'ENTREGADO'" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-black uppercase tracking-widest bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/50">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                    {{ pedido.estado }}
+                                </span>
+                                <span v-else-if="pedido.estado === 'CANCELADO'" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-black uppercase tracking-widest bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800/50">
+                                    <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                                    {{ pedido.estado }}
+                                </span>
+                                <span v-else class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-black uppercase tracking-widest bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                                    <span class="w-2 h-2 rounded-full bg-slate-500"></span>
                                     {{ pedido.estado }}
                                 </span>
                             </td>
                             <td class="text-center">
-                                <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
-                                    <button v-if="pedido.estado === 'PENDIENTE'" @click="abrirModal(pedido, 'ENVIAR')" class="btn-tech" style="padding: 6px 12px; font-size: 0.75em; border-color: #3b82f6; color: #3b82f6; width: 120px;">
+                                <div class="flex flex-col gap-2 items-center">
+                                    <button v-if="pedido.estado === 'PENDIENTE'" @click="abrirModal(pedido, 'ENVIAR')" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-500 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors w-32 cursor-pointer">
                                         Marcar Enviado
                                     </button>
                                     
-                                    <button v-if="pedido.estado === 'ENVIADO'" @click="abrirModal(pedido, 'ENTREGAR')" class="btn-tech" style="padding: 6px 12px; font-size: 0.75em; border-color: #10b981; color: #10b981; width: 120px;">
+                                    <button v-if="pedido.estado === 'ENVIADO'" @click="abrirModal(pedido, 'ENTREGAR')" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 transition-colors w-32 cursor-pointer">
                                         Entregado
                                     </button>
-
-                                    <button v-if="pedido.estado === 'PENDIENTE'" @click="abrirModal(pedido, 'REVERTIR')" class="btn-tech" style="padding: 6px 12px; font-size: 0.75em; border-color: #ef4444; color: #ef4444; width: 120px;">
+                                    <button v-if="pedido.estado === 'PENDIENTE'" @click="abrirModal(pedido, 'REVERTIR')" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-red-50 dark:bg-red-900/20 border-2 border-red-500 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors w-32 cursor-pointer">
                                         Revertir Venta
                                     </button>
-
-                                    <span v-if="pedido.estado === 'ENTREGADO' || pedido.estado === 'CANCELADO'" style="font-size: 0.8em; color: #64748b; font-weight: bold;">
+                                    
+                                    <!-- FINALIZADO CON FONDO SÓLIDO -->
+                                    <div v-if="pedido.estado === 'ENTREGADO' || pedido.estado === 'CANCELADO'" class="px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[11px] font-black uppercase tracking-widest w-32 text-center border border-slate-200 dark:border-slate-700">
                                         Finalizado
-                                    </span>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
