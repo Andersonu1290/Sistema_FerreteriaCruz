@@ -96,9 +96,11 @@ async function cargarListaUsuarios() {
         // Iteración asíncrona sobre el arreglo JSON devuelto por Spring Boot
         usuarios.forEach(u => {
             // FASE 4: Asignar dinámicamente la clase CSS de la insignia según el nivel de seguridad
-            const badgeClase = ['ADMIN', 'ALMACEN', 'JEFE_ALMACEN'].includes(String(u.rol || '').toUpperCase())
-                ? "badge-role-admin"
-                : "badge-role-user";
+            const badgeClase =
+                String(u.rol).toUpperCase() === "JEFE_ALMACEN"
+                || String(u.rol).toUpperCase() === "ADMIN"
+                    ? "badge-role-admin"
+                    : "badge-role-user";
 
             // Rellenar ceros a la izquierda para mantener la estética corporativa original (ej: USR-005)
             const idFormateado = String(u.idUsuario || u.id).padStart(3, '0');
