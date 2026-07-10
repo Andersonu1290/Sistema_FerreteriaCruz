@@ -4,7 +4,7 @@
         <div class="header-tech">
             <div class="header-title">
                 <img src="../../../public/admin/img/logo_ferreteriacruz.png" alt="ferreteriacruz" class="logo-img" onerror="this.src='https://via.placeholder.com/150x45/111827/E63946?text=ferreteriacruz'">
-                <h2 class="text-white">
+                <h2 class="text-gray-900 dark:text-white">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" class="text-blue">
                         <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
                         <line x1="8" y1="21" x2="16" y2="21"></line>

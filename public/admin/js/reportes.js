@@ -126,7 +126,15 @@ function renderizarTablaVentas(ventas) {
 }
 
 function inicializarGraficos(topLabels, topData, topColors, catLabels, catData, catColors) {
-    Chart.defaults.color = '#9ca3af';
+    // 🌙 DETECTAMOS SI EL MODO NOCHE ESTÁ ACTIVO
+    const isDark = document.documentElement.classList.contains('dark');
+    
+    // Asignamos colores dinámicos dependiendo del tema
+    const textColor = isDark ? '#9ca3af' : '#475569'; // Gris claro en noche, gris oscuro en día
+    const gridColor = isDark ? '#374151' : '#e2e8f0'; // Líneas oscuras en noche, líneas suaves en día
+    const donutBorder = isDark ? '#1e293b' : '#ffffff'; // Borde oscuro en noche, borde blanco en día
+    
+    Chart.defaults.color = textColor;
     Chart.defaults.font.family = "'Inter', sans-serif";
 
     if (window.miBarChart) window.miBarChart.destroy();
@@ -151,8 +159,15 @@ function inicializarGraficos(topLabels, topData, topColors, catLabels, catData, 
                 maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
                 scales: {
-                    y: { beginAtZero: true, grid: { color: '#374151' }, ticks: { stepSize: 1 } },
-                    x: { grid: { display: false } }
+                    y: { 
+                        beginAtZero: true, 
+                        grid: { color: gridColor }, // 🎨 Color dinámico para la cuadrícula
+                        ticks: { stepSize: 1, color: textColor } // 🎨 Color dinámico para los números
+                    },
+                    x: { 
+                        grid: { display: false },
+                        ticks: { color: textColor } // 🎨 Color dinámico para los nombres abajo
+                    }
                 }
             }
         });
@@ -167,7 +182,7 @@ function inicializarGraficos(topLabels, topData, topColors, catLabels, catData, 
                 datasets: [{
                     data: catData,
                     backgroundColor: catColors,
-                    borderColor: '#1f2937',
+                    borderColor: donutBorder, // 🎨 Borde dinámico
                     borderWidth: 2,
                     hoverOffset: 12
                 }]
@@ -176,10 +191,21 @@ function inicializarGraficos(topLabels, topData, topColors, catLabels, catData, 
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { position: 'bottom', labels: { color: '#d1d5db', padding: 15, boxWidth: 12 } }
+                    legend: { 
+                        position: 'bottom', 
+                        labels: { color: textColor, padding: 15, boxWidth: 12 } // 🎨 Nombres de categorías abajo
+                    }
                 },
                 cutout: '65%'
             }
         });
     }
 }
+
+// 💡 TRUCO PRO: Escuchamos cuando el usuario hace clic en el botón de tema 
+// para repintar los gráficos instantáneamente sin recargar la página.
+document.addEventListener('click', (e) => {
+    if (e.target.closest('.btn-flotante-tema')) {
+        setTimeout(cargarDatosDashboard, 50); // Recargamos el chart después de que Tailwind cambie las clases
+    }
+});

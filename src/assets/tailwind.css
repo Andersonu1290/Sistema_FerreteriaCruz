@@ -1,10 +1,259 @@
 @import "tailwindcss";
 
-/* 🌟 Aquí inyectamos tus colores corporativos usando la nueva sintaxis de Tailwind v4 */
+@variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-medical-blue: #0d4d8b;
   --color-medical-dark: #0a3663;
   --color-medical-light: #f0f7ff;
   --color-medical-accent: #2ecc71;
   --color-medical-border: #e2e8f0;
+}
+
+/* =======================================================
+   🛡️ BOTÓN FLOTANTE BLINDADO
+   ======================================================= */
+.btn-flotante-tema {
+    position: fixed !important;
+    bottom: 24px !important;
+    right: 24px !important;
+    z-index: 99999 !important; 
+    border-radius: 50% !important;
+    padding: 12px !important;
+    cursor: pointer !important;
+    transition: transform 0.2s ease, background-color 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.btn-flotante-tema:hover { transform: scale(1.1) !important; }
+
+body:not(.dark) .btn-flotante-tema,
+html:not(.dark) .btn-flotante-tema {
+    background-color: #ffffff !important;
+    color: #0d4d8b !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important; 
+}
+
+.dark .btn-flotante-tema {
+    background-color: #1e293b !important;
+    color: #fbbf24 !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* =======================================================
+   💎 MODO DÍA: DISEÑO "CLEAN" PREMIUM 
+   ======================================================= */
+body, html, #app, .admin-container, .dashboard-container {
+    background-color: #f8fafc !important; /* Fondo ligerísimamente gris para que las cajas blancas resalten */
+    color: #0f172a !important; 
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+/* 🚀 CAJAS PRINCIPALES: Formularios, Tablas, MENÚ LATERAL y REPORTES */
+html:not(.dark) .header-tech, 
+html:not(.dark) .table-panel, 
+html:not(.dark) .kpi-card, 
+html:not(.dark) .form-side, 
+html:not(.dark) .table-side, 
+html:not(.dark) .search-box-container, 
+html:not(.dark) .alert-error, 
+html:not(.dark) .note-box, 
+html:not(.dark) .form-panel, 
+html:not(.dark) .info-box, 
+html:not(.dark) .main-nav, 
+html:not(.dark) .report-card, 
+html:not(.dark) .chart-box { 
+    background-color: #ffffff !important; 
+    border: 1px solid #e2e8f0 !important; 
+    border-radius: 12px !important; 
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important; 
+}
+
+/* 💥 CAZADOR DE TEXTOS INVISIBLES 💥 */
+html:not(.dark) .tech-table td:nth-child(1) span, 
+html:not(.dark) .tech-table td:nth-child(3) span, 
+html:not(.dark) .tech-table td:nth-child(4) ul,   
+html:not(.dark) .tech-table td:nth-child(4) li,
+html:not(.dark) .tech-table td:nth-child(4) strong,
+html:not(.dark) .tech-table td:nth-child(5) span {
+    color: #1e293b !important; 
+}
+
+/* Títulos, textos del Menú Lateral y Gráficos */
+html:not(.dark) h2.text-white,
+html:not(.dark) h3.text-white,
+html:not(.dark) .text-white,
+html:not(.dark) .form-panel h3,
+html:not(.dark) .info-box h4,
+html:not(.dark) .report-label,
+html:not(.dark) .report-value,
+html:not(.dark) .chart-title {
+    color: #0f172a !important;
+}
+
+/* 🛡️ Arreglo específico para el Operador (Sin tocar el cuadro verde de Ingresos) */
+html:not(.dark) #infoOperador,
+html:not(.dark) #infoOperador strong,
+html:not(.dark) #infoOperador span,
+html:not(.dark) #infoOperador svg {
+    color: #0f172a !important;
+}
+
+/* Colores de Alerta Globales y KPIs de Reportes */
+html:not(.dark) .text-blue { color: #2563eb !important; font-weight: 600 !important; }
+html:not(.dark) .text-success { color: #16a34a !important; font-weight: 600 !important; }
+html:not(.dark) .text-danger, html:not(.dark) .alert-error { color: #dc2626 !important; }
+html:not(.dark) .text-warning { color: #d97706 !important; }
+
+/* Inputs y Selects */
+.input-tech { 
+    background-color: #ffffff !important; 
+    color: #0f172a !important; 
+    border: 1px solid #cbd5e1 !important; 
+    border-radius: 8px !important;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.2s ease !important;
+}
+.input-tech:focus {
+    border-color: #0d4d8b !important;
+    box-shadow: 0 0 0 3px rgba(13, 77, 139, 0.1) !important;
+    outline: none !important;
+}
+
+/* Tablas Corporativas */
+.tech-table { width: 100% !important; border-collapse: collapse !important; }
+.tech-table th { 
+    background-color: #f1f5f9 !important; 
+    color: #475569 !important; 
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    padding: 12px 16px !important;
+    border-bottom: 2px solid #e2e8f0 !important;
+}
+.tech-table td { 
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #f1f5f9 !important; 
+    color: #334155 !important; 
+    padding: 12px 16px !important;
+    font-size: 0.875rem !important;
+}
+
+/* Menú Sidebar Botones */
+.nav-btn { 
+    background-color: transparent !important; 
+    color: #475569 !important; 
+    border-radius: 8px !important;
+    margin-bottom: 4px !important;
+}
+.nav-btn:hover { background-color: #f1f5f9 !important; }
+.nav-btn.nav-active { 
+    background-color: #eff6ff !important; 
+    color: #1d4ed8 !important; 
+    box-shadow: inset 4px 0 0 0 #1d4ed8 !important; 
+}
+
+/* Botones Superiores */
+.btn-tech {
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #334155 !important;
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+}
+.btn-tech:hover { background-color: #f8fafc !important; }
+html:not(.dark) .btn-success-tech { background-color: #f0fdf4 !important; border-color: #86efac !important; color: #166534 !important; }
+html:not(.dark) .btn-danger-tech { background-color: #fef2f2 !important; border-color: #fca5a5 !important; color: #991b1b !important; }
+
+
+/* =======================================================
+   🌙 MODO NOCHE (Elegancia Absoluta)
+   ======================================================= */
+.dark body, .dark html, .dark #app, .dark .admin-container, .dark .dashboard-container {
+    background-color: #0f172a !important; 
+    color: #f8fafc !important;
+}
+
+.dark .header-tech, .dark .table-panel, .dark .kpi-card, .dark .form-side, .dark .table-side, .dark .search-box-container, 
+.dark .alert-error, .dark .note-box, .dark .form-panel, .dark .info-box,
+.dark .main-nav, .dark .report-card, .dark .chart-box { 
+    background-color: #1e293b !important; 
+    border: 1px solid #334155 !important; 
+    border-radius: 12px !important;
+    box-shadow: none !important;
+}
+
+.dark .dashboard-container [class*="text-white"], .dark h2, .dark h3, .dark label, .dark .text-muted,
+.dark #infoOperador, .dark #infoOperador strong, .dark #infoOperador span,
+.dark .report-label, .dark .report-value, .dark .chart-title { 
+    color: #f8fafc !important; 
+}
+
+.dark .text-blue { color: #60a5fa !important; font-weight: 600 !important; }
+.dark .text-success { color: #4ade80 !important; font-weight: 600 !important; }
+.dark .text-danger, .dark .alert-error { color: #f87171 !important; }
+.dark .text-warning { color: #fbbf24 !important; }
+
+.dark .input-tech { 
+    background-color: #0f172a !important; 
+    color: #f8fafc !important; 
+    border: 1px solid #334155 !important; 
+    border-radius: 8px !important;
+}
+
+.dark .tech-table th { 
+    background-color: #0f172a !important; 
+    color: #94a3b8 !important; 
+    border-bottom: 2px solid #334155 !important;
+}
+
+.dark .tech-table td { 
+    background-color: #1e293b !important;
+    border-bottom: 1px solid #334155 !important; 
+    color: #cbd5e1 !important; 
+}
+
+.dark .nav-btn { background-color: transparent !important; color: #94a3b8 !important; }
+.dark .nav-btn.nav-active { 
+    background-color: #1e3a8a !important; 
+    color: #bfdbfe !important; 
+    box-shadow: inset 4px 0 0 0 #60a5fa !important; 
+}
+
+.dark .btn-tech { background-color: #1e293b !important; border-color: #475569 !important; color: #f8fafc !important; }
+.dark .btn-success-tech { background-color: #064e3b !important; border-color: #059669 !important; color: #a7f3d0 !important; }
+.dark .btn-danger-tech { background-color: #7f1d1d !important; border-color: #dc2626 !important; color: #fecaca !important; }
+
+/* =======================================================
+   💎 ESTILO PREMIUM PARA EL OPERADOR (.user-badge)
+   ======================================================= */
+
+/* 1. MODO LUZ (Blanco/Gris claro) */
+html:not(.dark) .user-badge {
+    background-color: #eff6ff !important; /* Fondo azul pastel muy suave */
+    border: 1px solid #bfdbfe !important; /* Borde azul claro */
+    color: #0d4d8b !important;            /* Azul brillante y legible */
+}
+
+html:not(.dark) .user-badge strong,
+html:not(.dark) .user-badge span {
+    color: #0d4d8b !important;            /* Fuerza que el texto sea azul oscuro */
+    font-weight: 700 !important;
+}
+
+/* 2. MODO NOCHE (Azul oscuro) */
+.dark .user-badge {
+    background-color: #1e293b !important;  /* Fondo oscuro elegante */
+    border: 1px solid #334155 !important;  /* Borde oscuro */
+    color: #60a5fa !important;             /* Azul claro brillante */
+}
+
+.dark .user-badge strong,
+.dark .user-badge span {
+    color: #ffffff !important;             /* Texto blanco para leerse bien */
+    font-weight: 700 !important;
 }
