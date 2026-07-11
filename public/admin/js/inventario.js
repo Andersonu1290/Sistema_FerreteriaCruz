@@ -109,7 +109,9 @@ async function cargarInventario() {
                     <td class="text-center">${imgHtml}</td>
                     <td class="td-nombre">${p.nombre}</td>
                     <td class="text-center">
-                        <span class="stock-number ${claseStock}">${p.stockActual}</span>
+                        <div class="text-lg ${obtenerColorStock(p.stockActual, p.stockMinimo)}">
+                            ${p.stockActual}
+                        </div>
                     </td>
                     <td class="text-center text-muted font-mono">
                         ${p.stockMinimo}
@@ -177,5 +179,27 @@ async function eliminarProducto(idProducto, sku) {
                 alert(error.message || "Error al intentar eliminar el producto.");
             }
         }
+    }
+}
+
+// Método para calcular el color del stock
+function obtenerColorStock(stock, stockMinimo) {
+    // Asegurarnos de que sean números
+    const actual = Number(stock);
+    const minimo = Number(stockMinimo);
+    
+    // Umbral de "casi cerca" (ejemplo: si el stock mínimo es 10, de 10 a 15 estará en amarillo)
+    // Puedes cambiar ese "+ 5" por el margen que consideres adecuado para tu farmacia
+    const margenAlerta = minimo + 5; 
+
+    if (actual < minimo) {
+        // Rojo: Ya pasó el umbral mínimo (Peligro)
+        return 'text-red-600 dark:text-red-400 font-black';
+    } else if (actual >= minimo && actual <= margenAlerta) {
+        // Amarillo: Igual al mínimo o muy cerca (Alerta)
+        return 'text-amber-500 dark:text-amber-400 font-bold';
+    } else {
+        // Verde (o color normal): Stock saludable
+        return 'text-emerald-600 dark:text-emerald-400 font-bold';
     }
 }

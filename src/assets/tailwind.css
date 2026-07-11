@@ -316,9 +316,8 @@ html:not(.dark) .btn-flotante-tema {
 }
 
 /* =======================================================
-   TEXTOS
-   ======================================================= */
-
+   TEXTOS (MODO OSCURO)
+======================================================= */
 .dark .admin-container h2,
 .dark .admin-container h3,
 .dark .admin-container label,
@@ -329,9 +328,18 @@ html:not(.dark) .btn-flotante-tema {
 .dark .admin-container .chart-title,
 .dark .admin-container #infoOperador,
 .dark .admin-container #infoOperador strong,
-.dark .admin-container #infoOperador span{
+.dark .admin-container #infoOperador span {
+    color: #f8fafc !important;
+}
 
-    color:#f8fafc !important;
+/* 👇 AGREGAR ESTE BLOQUE NUEVO 👇 */
+.dark .admin-container .tech-table td:nth-child(1) span,
+.dark .admin-container .tech-table td:nth-child(3) span,
+.dark .admin-container .tech-table td:nth-child(4) ul,
+.dark .admin-container .tech-table td:nth-child(4) li,
+.dark .admin-container .tech-table td:nth-child(4) strong,
+.dark .admin-container .tech-table td:nth-child(5) span {
+    color: #f8fafc !important; /* Fuerza el color blanco en modo oscuro */
 }
 
 /* =======================================================
