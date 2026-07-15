@@ -19,7 +19,18 @@
                 <div class="user-badge" style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
                     Ingresos Netos: <strong class="font-mono" id="kpiIngresos">Cargando...</strong>
                 </div>
-                <!-- CORRECCIÓN DE RUTA: Apunta al path '/admin/inventario' de tu Router de Vue -->
+                
+                <button @click="descargarExcel" class="btn-tech" style="background: rgba(16, 185, 129, 0.15); border-color: #10b981; color: #10b981; cursor: pointer;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    Exportar Inventario Excel
+                </button>
+
                 <a href="/admin/inventario" class="btn-tech">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
                         <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -114,6 +125,9 @@
 </template>
 
 <script>
+// Importamos el cliente API de Vue para acceder a la nueva función
+import { apiClient } from '@/services/apiClient';
+
 export default {
   name: 'ReportesView',
   mounted() {
@@ -127,7 +141,6 @@ export default {
       .then(() => this.cargarScriptInterno('/admin/js/reportes.js'))
       .then(() => {
         // 3. Disparamos el chispazo de inicialización para tus scripts nativos
-        // Esto despertará reportes.js, poblará los KPIs e inicializará las gráficas en los canvas
         window.document.dispatchEvent(new Event("DOMContentLoaded", {
           bubbles: true,
           cancelable: true
@@ -138,7 +151,6 @@ export default {
   methods: {
     cargarScriptExterno(url) {
       return new Promise((resolve, reject) => {
-        // Validación para CDN para que Chart.js no se cargue múltiples veces en la memoria SPA
         const existente = document.querySelector(`script[src="${url}"]`);
         if (existente) { resolve(); return; }
         const script = document.createElement('script');
@@ -159,6 +171,35 @@ export default {
         script.onerror = reject;
         document.body.appendChild(script);
       });
+    },
+    
+    // 🔥 NUEVO MÉTODO PARA EXPORTAR EL EXCEL
+    async descargarExcel() {
+      try {
+        // Mostramos un mensaje nativo en caso de que tome un par de segundos
+        console.log("Generando archivo Excel...");
+        
+        // 1. Llamamos al backend para obtener los bytes del Excel
+        const blob = await apiClient.descargarReporteExcel();
+        
+        // 2. Creamos una URL temporal en la memoria del navegador para el archivo
+        const url = window.URL.createObjectURL(blob);
+        
+        // 3. Creamos un enlace <a> fantasma, le damos clic y lo destruimos
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'inventario_ferreteriacruz.xlsx');
+        document.body.appendChild(link);
+        link.click();
+        
+        // Limpieza de memoria
+        link.parentNode.removeChild(link);
+        window.URL.revokeObjectURL(url);
+        
+      } catch (error) {
+        alert("Ocurrió un error al intentar descargar el Excel. Verifique la conexión con el servidor.");
+        console.error(error);
+      }
     }
   }
 }

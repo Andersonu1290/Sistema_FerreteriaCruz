@@ -204,6 +204,32 @@ export const apiClient = {
       console.error("Error cancelando pedido:", error);
       throw error;
     }
+  },
+
+  // 🔥 NUEVO: Exportar inventario a Excel
+  async descargarReporteExcel() {
+    try {
+      const respuesta = await fetch(`${BASE_URL}/reportes/inventario/excel`, {
+        method: 'GET',
+        // Usamos buildHeaders para enviar el token, pero NO enviamos JSON
+        headers: buildHeaders(false, true) 
+      });
+
+      if (respuesta.status === 401 || respuesta.status === 403) {
+        authStore.cerrarSesion();
+        throw new Error('Tu sesión ha expirado o no tienes permisos. Inicia sesión nuevamente.');
+      }
+
+      if (!respuesta.ok) {
+        throw new Error(`Error HTTP ${respuesta.status}: No se pudo generar el reporte`);
+      }
+
+      // IMPORTANTE: Como es un archivo, lo procesamos como blob (binario), no como json()
+      return await respuesta.blob(); 
+    } catch (error) {
+      console.error("Error al exportar Excel:", error);
+      throw error;
+    }
   }
 
 };
