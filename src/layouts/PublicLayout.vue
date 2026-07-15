@@ -23,7 +23,7 @@
                 v-model="filtrosStore.busqueda" 
                 @focus="buscadorFoco = true" 
                 @blur="ocultarBuscador"
-                placeholder="Buscar paracetamol, ibuprofeno..." 
+                placeholder="Buscar taladros, tubos..." 
                 class="block w-full pl-12 pr-4 py-3 border-2 border-slate-100 rounded-full bg-slate-50 text-slate-800 focus:bg-white focus:ring-4 focus:ring-medical-blue/10 focus:border-medical-blue outline-none transition-all font-medium"
               >
             </div>
