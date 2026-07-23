@@ -43,7 +43,7 @@
         </div>
 
         <p class="text-slate-500 leading-relaxed mb-8">
-          Medicamento / Producto disponible en los almacenes de Ferreteria Cruz. 
+          Producto disponible en los almacenes de Ferreteria Cruz. 
           Garantizamos la correcta conservación y trazabilidad del lote.
         </p>
 

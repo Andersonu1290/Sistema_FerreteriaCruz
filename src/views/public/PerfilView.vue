@@ -55,7 +55,15 @@
           </div>
 
           <div class="p-0 md:p-4">
-            <div v-if="comprasRealizadas.length === 0" class="text-center py-16 px-4">
+            <!-- NUEVO: ESTADO DE CARGA ANIMADO -->
+            <div v-if="cargando" class="text-center py-16 px-4">
+              <span class="animate-spin inline-block w-14 h-14 border-[4px] border-medical-blue border-t-transparent rounded-full mb-4"></span>
+              <h3 class="text-lg font-black text-slate-700 mb-2">Cargando tu historial...</h3>
+              <p class="text-slate-500">Estamos recuperando tus pedidos de la base de datos.</p>
+            </div>
+
+            <!-- ESTADO VACÍO (AHORA CON v-else-if) -->
+            <div v-else-if="comprasRealizadas.length === 0" class="text-center py-16 px-4">
               <div class="w-20 h-20 bg-slate-50 text-slate-300 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
               </div>
@@ -164,6 +172,7 @@ import { apiClient } from '@/services/apiClient';
 
 const router = useRouter();
 const comprasRealizadas = ref([]);
+const cargando = ref(true);
 
 const usuarioActivo = computed(() => authStore.usuarioActual || { username: 'Invitado' });
 
@@ -182,8 +191,11 @@ onMounted(async () => {
       console.error('Error cargando compras del perfil:', error);
       authStore.cerrarSesion();
       router.push('/login?redirect=/perfil');
+    } finally {
+      cargando.value = false; // APAGA LA ANIMACIÓN AL TERMINAR
     }
   } else {
+    cargando.value = false;
     router.push('/login?redirect=/perfil');
   }
 });
