@@ -48,7 +48,7 @@
         </div>
       </div>
       <div class="relative rounded-[2rem] overflow-hidden shadow-2xl h-[500px]">
-        <img src="https://lh3.googleusercontent.com/gps-proxy/ALd4DhG2RhApCRxaWQ_pT-x9tCggqCS0r-MgbfZqGv_mbQU738EqLXOxFAgchv6KXrA-2iRKLJh1UHeFkURxY1aKcQk6Uz6ZN9njWEAK1F8c_TWssrpH0ZUQsrNAuYvWKLh2tUFDJFSymSz99yZBu6bs-8bOieRPmLTaKLd19xZJj9TO48GVxH96Hess7IJL4oOjYrq1Ew=w408-h726-k-no" class="absolute inset-0 w-full h-full object-cover" alt="Interior Ferretería" />
+        <img src="https://media.istockphoto.com/id/1451936957/es/foto/centros-de-mejoras-para-el-hogar-en-jap%C3%B3n.jpg?s=612x612&w=0&k=20&c=w46w9SlhsaM8M367H80RSGjKfBF2YBAhGpcflmheNh0=" class="absolute inset-0 w-full h-full object-cover" alt="Interior Ferretería" />
       </div>
     </section>
 
