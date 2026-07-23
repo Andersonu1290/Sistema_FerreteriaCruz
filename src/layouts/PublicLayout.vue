@@ -6,7 +6,7 @@
         <div class="flex justify-between items-center h-20 gap-4">
           
           <router-link to="/" class="flex items-center gap-3 flex-shrink-0">
-            <div class="w-10 h-10 bg-gradient-to-br from-medical-blue to-blue-400 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-md">★</div>
+            <div class="w-10 h-10 bg-gradient-to-br from-medical-blue to-blue-400 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-md">✚</div>
             <span class="text-xl md:text-2xl font-black text-medical-dark tracking-tight hidden sm:block">Ferreteria Cruz</span>
           </router-link>
 
@@ -105,10 +105,10 @@
       <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
         <div class="lg:col-span-1">
           <div class="flex items-center gap-2 mb-6">
-            <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-medical-blue font-black text-xl">★</div>
+            <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-medical-blue font-black text-xl">✚</div>
             <span class="text-2xl font-black tracking-tight">Ferreteria Cruz</span>
           </div>
-          <p class="text-blue-200/80 leading-relaxed text-sm">Plataforma e-commerce farmacéutica de última generación. Cuidando tu salud con tecnología, rapidez y confianza.</p>
+          <p class="text-blue-200/80 leading-relaxed text-sm">Ferretería Cruz ofrece una amplia variedad de herramientas, materiales y equipos para profesionales y aficionados, con atención rápida, productos de calidad y precios competitivos.</p>
         </div>
         <div>
           <h3 class="text-lg font-bold mb-6 text-white tracking-wide">Navegación</h3>
@@ -147,7 +147,7 @@
               <svg class="w-5 h-5 text-medical-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
               <div>
                 <p class="text-sm text-blue-200 block">Correo de soporte</p>
-                <p class="font-bold text-white">soporte@estrella.com</p>
+                <p class="font-bold text-white">soporte@ferreteriacruz.com</p>
               </div>
             </li>
           </ul>

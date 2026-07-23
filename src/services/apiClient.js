@@ -230,6 +230,22 @@ export const apiClient = {
       console.error("Error al exportar Excel:", error);
       throw error;
     }
-  }
+  },
+
+  // NUEVO: Traer los datos personales de la nueva tabla
+  async obtenerPerfilCliente(idUsuario) {
+    try {
+      const respuesta = await fetch(`${BASE_URL}/usuarios/perfil/${idUsuario}`, {
+        method: 'GET',
+        headers: buildHeaders()
+      });
+      // Si la respuesta es 204 (No Content), devolver null sin error
+      if (respuesta.status === 204) return null;
+      return await manejarRespuesta(respuesta);
+    } catch (error) {
+      console.warn("No se pudo obtener el perfil del cliente de la nueva tabla.");
+      return null;
+    }
+  },
 
 };

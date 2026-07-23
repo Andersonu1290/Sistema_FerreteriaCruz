@@ -1,11 +1,22 @@
 <template>
   <div class="max-w-300 mx-auto py-8 px-4 sm:px-6 lg:px-8">
     <h1 class="text-3xl font-black text-slate-800 mb-8">Finalizar Pedido</h1>
-
+    
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
       
       <div class="lg:col-span-8 space-y-6">
         
+        <!-- Banner Inteligente de Auto-completado -->
+        <div v-if="datosCargados" class="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl flex gap-4 items-center shadow-sm animate-fade-in">
+            <div class="w-10 h-10 bg-emerald-500 text-white rounded-full flex items-center justify-center shrink-0 shadow-md">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </div>
+            <div>
+                <h3 class="font-black text-emerald-700 text-sm">¡Hemos cargado tus datos!</h3>
+                <p class="text-xs text-emerald-600">Recuperamos tu información y dirección de tu última compra para ahorrarte tiempo.</p>
+            </div>
+        </div>
+
         <div class="bg-white p-6 md:p-8 rounded-4xl shadow-sm border border-slate-200">
           <h2 class="text-lg font-black text-slate-800 mb-6 flex items-center gap-3">
             <span class="w-8 h-8 rounded-full bg-medical-blue text-white flex items-center justify-center text-xs shadow-md">1</span>
@@ -13,16 +24,16 @@
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label class="block text-xs font-black text-slate-400 uppercase mb-2">Nombre</label>
-              <input v-model="form.nombre" type="text" placeholder="Ej. Juan" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:ring-2 focus:ring-medical-blue outline-none transition-all font-medium" />
+              <label class="block text-xs font-black text-slate-400 uppercase mb-2">Nombres</label>
+              <input v-model="form.nombre" type="text" placeholder="Ej. Juan" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:ring-2 focus:ring-medical-blue outline-none transition-all font-medium capitalize" />
             </div>
             <div>
-              <label class="block text-xs font-black text-slate-400 uppercase mb-2">Apellido</label>
-              <input v-model="form.apellido" type="text" placeholder="Ej. Pérez" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:ring-2 focus:ring-medical-blue outline-none transition-all font-medium" />
+              <label class="block text-xs font-black text-slate-400 uppercase mb-2">Apellidos</label>
+              <input v-model="form.apellido" type="text" placeholder="Ej. Pérez" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:ring-2 focus:ring-medical-blue outline-none transition-all font-medium capitalize" />
             </div>
             <div>
               <label class="block text-xs font-black text-slate-400 uppercase mb-2">DNI / RUC</label>
-              <input v-model="form.docCliente" type="text" placeholder="Ej. 70123456" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:ring-2 focus:ring-medical-blue outline-none transition-all font-medium" />
+              <input v-model="form.docCliente" type="text" maxlength="11" placeholder="Ej. 70123456" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:ring-2 focus:ring-medical-blue outline-none transition-all font-medium" />
             </div>
             <div>
               <label class="block text-xs font-black text-slate-400 uppercase mb-2">Teléfono Móvil</label>
@@ -109,28 +120,39 @@
             </button>
           </div>
 
-          <div v-if="form.metodoPago.includes('TARJETA')" class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+          <!-- Componente Inteligente de Tarjeta de Crédito -->
+          <div v-if="form.metodoPago.includes('TARJETA')" class="bg-slate-50 p-6 rounded-2xl border border-slate-200 overflow-hidden relative">
+            
             <h3 class="text-sm font-black text-slate-700 mb-4 flex items-center gap-2">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
               Datos de la Tarjeta
             </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
               <div class="md:col-span-2">
-                <input v-model="form.tarjeta.titular" type="text" placeholder="Nombre en la tarjeta" class="w-full bg-white border border-slate-200 rounded-lg py-2.5 px-4 outline-none focus:border-medical-blue" />
+                <input v-model="form.tarjeta.titular" type="text" placeholder="Nombre impreso en la tarjeta" class="w-full bg-white border border-slate-200 rounded-lg py-2.5 px-4 outline-none focus:border-medical-blue uppercase" />
               </div>
-              <div class="md:col-span-2">
-                <input v-model="form.tarjeta.numero" type="text" maxlength="19" placeholder="0000 0000 0000 0000" class="w-full bg-white border border-slate-200 rounded-lg py-2.5 px-4 outline-none focus:border-medical-blue font-mono" />
+              <div class="md:col-span-2 relative">
+                <!-- Formateador Inteligente de Tarjeta -->
+                <input v-model="form.tarjeta.numero" @input="formatearTarjeta" type="text" placeholder="0000 0000 0000 0000" class="w-full bg-white border border-slate-200 rounded-lg py-2.5 px-4 outline-none focus:border-medical-blue font-mono tracking-widest text-lg" />
+                
+                <!-- Logo dinámico Visa/Mastercard -->
+                <div class="absolute right-3 top-1/2 -translate-y-1/2">
+                    <span v-if="marcaTarjeta === 'VISA'" class="text-blue-700 font-black italic text-xl">VISA</span>
+                    <span v-else-if="marcaTarjeta === 'MASTERCARD'" class="text-red-500 font-black italic text-xl">MasterCard</span>
+                </div>
               </div>
               <div>
-                <input v-model="form.tarjeta.vencimiento" type="text" placeholder="MM/YY" maxlength="5" class="w-full bg-white border border-slate-200 rounded-lg py-2.5 px-4 outline-none focus:border-medical-blue text-center" />
+                <input v-model="form.tarjeta.vencimiento" @input="formatearVencimiento" type="text" placeholder="MM/YY" class="w-full bg-white border border-slate-200 rounded-lg py-2.5 px-4 outline-none focus:border-medical-blue text-center font-mono text-lg" />
               </div>
               <div>
-                <input v-model="form.tarjeta.cvv" type="password" placeholder="CVV" maxlength="4" class="w-full bg-white border border-slate-200 rounded-lg py-2.5 px-4 outline-none focus:border-medical-blue text-center" />
+                <input v-model="form.tarjeta.cvv" @input="formatearCVV" type="password" placeholder="CVV" class="w-full bg-white border border-slate-200 rounded-lg py-2.5 px-4 outline-none focus:border-medical-blue text-center font-mono text-lg tracking-[0.3em]" />
               </div>
             </div>
           </div>
 
         </div>
+
       </div>
 
       <div class="lg:col-span-4">
@@ -176,7 +198,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed } from 'vue';
+import { ref, reactive, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { carritoStore } from '@/store/carrito';
 import { authStore } from '@/store/auth';
@@ -184,6 +206,7 @@ import { apiClient } from '@/services/apiClient';
 
 const router = useRouter();
 const procesando = ref(false);
+const datosCargados = ref(false);
 
 const form = reactive({
   nombre: '',
@@ -206,6 +229,78 @@ const form = reactive({
     cvv: ''
   }
 });
+
+// ==========================================
+// 💡 CEREBRO INTELIGENTE DE AUTO-LLENADO
+// ==========================================
+onMounted(async () => {
+  if (authStore.estaLogueado) {
+    const idUser = authStore.usuarioActual.idUsuario || authStore.usuarioActual.id;
+    
+    try {
+      // 1. CARGAMOS DATOS PERSONALES DESDE LA NUEVA TABLA (usuarios_clientes)
+      const perfilNuevo = await apiClient.obtenerPerfilCliente(idUser);
+      
+      if (perfilNuevo) {
+        form.nombre = perfilNuevo.nombreCompleto || '';
+        form.apellido = perfilNuevo.apellido || '';
+        form.docCliente = perfilNuevo.dni || '';
+        form.email = perfilNuevo.correo || '';
+      }
+
+      // 2. BUSCAMOS HISTORIAL DE COMPRAS (venta_cliente)
+      const historial = await apiClient.obtenerMisCompras(idUser);
+      
+      if (historial && historial.length > 0) {
+        const ultimaCompra = historial[0]; 
+        
+        // Solo rellenamos lo que falta (Dirección y teléfono)
+        form.telefono = ultimaCompra.telefonoCliente || '';
+        form.direccion = ultimaCompra.direccionEnvio || '';
+        form.numeroCalle = ultimaCompra.numeroCalle || '';
+        form.apartamento = ultimaCompra.apartamento || '';
+        form.ciudad = ultimaCompra.ciudad || '';
+        form.departamento = ultimaCompra.departamento || '';
+        
+        // Activamos el banner solo si recuperamos historial logístico
+        datosCargados.value = true;
+      }
+    } catch (error) {
+      console.warn("No se pudo auto-llenar los datos.");
+    }
+  }
+});
+
+// ==========================================
+// 💳 FORMATEADORES DE TARJETA EN VIVO
+// ==========================================
+const marcaTarjeta = computed(() => {
+    if (form.tarjeta.numero.startsWith('4')) return 'VISA';
+    if (form.tarjeta.numero.startsWith('5')) return 'MASTERCARD';
+    return null;
+});
+
+const formatearTarjeta = () => {
+  let valor = form.tarjeta.numero.replace(/\D/g, '');
+  let formateado = '';
+  for (let i = 0; i < valor.length; i++) {
+    if (i > 0 && i % 4 === 0) formateado += ' ';
+    formateado += valor[i];
+  }
+  form.tarjeta.numero = formateado.substring(0, 19); 
+};
+
+const formatearVencimiento = () => {
+  let valor = form.tarjeta.vencimiento.replace(/\D/g, '');
+  if (valor.length > 2) {
+    valor = valor.substring(0, 2) + '/' + valor.substring(2, 4);
+  }
+  form.tarjeta.vencimiento = valor.substring(0, 5);
+};
+
+const formatearCVV = () => {
+  form.tarjeta.cvv = form.tarjeta.cvv.replace(/\D/g, '').substring(0, 4);
+};
 
 const metodosPago = [
   { id: 'TARJETA_CREDITO', nombre: 'T. Crédito' },
@@ -234,17 +329,14 @@ const procesarPago = async () => {
   }
 
   const usuarioGuardado = authStore.usuarioActual;
-
-  if (!usuarioGuardado || !usuarioGuardado.idUsuario) {
+  if (!usuarioGuardado || (!usuarioGuardado.idUsuario && !usuarioGuardado.id)) {
     alert("Tu sesión ha expirado. Inicia sesión nuevamente.");
     router.push('/login?redirect=/checkout');
     return;
   }
 
   procesando.value = true;
-
   try {
-    // 1️⃣ Mapeamos los items del carrito para que coincida con ItemCarritoDTO de Java
     const itemsCarrito = carritoStore.items.map(item => {
       return {
         idProducto: item.producto.idProducto,
@@ -253,18 +345,17 @@ const procesarPago = async () => {
       };
     });
 
-    // 2️⃣ Extraemos los últimos 4 dígitos y marca de la tarjeta de forma segura
     let ultimos4 = null;
-    let marcaTarjeta = null;
+    let marca = null;
+
     if (form.metodoPago.includes('TARJETA') && form.tarjeta.numero) {
       const numLimpio = form.tarjeta.numero.replace(/\s+/g, '');
       ultimos4 = numLimpio.slice(-4);
-      marcaTarjeta = form.tarjeta.numero.startsWith('4') ? 'VISA' : 'MASTERCARD';
+      marca = marcaTarjeta.value;
     }
 
-    // 3️⃣ CONSTRUIMOS EL PAYLOAD MAESTRO (Coincide exacto con PedidoClienteRequestDTO)
     const payloadMaestro = {
-      idUsuario: usuarioGuardado.idUsuario,
+      idUsuario: usuarioGuardado.idUsuario || usuarioGuardado.id,
       dniCliente: form.docCliente,
       nombreCliente: form.nombre,
       apellidoCliente: form.apellido,
@@ -276,30 +367,27 @@ const procesarPago = async () => {
       apartamento: form.apartamento,
       ciudad: form.ciudad,
       departamento: form.departamento,
-      codigoPostal: "LIMA-01", 
+      codigoPostal: "LIMA-01",
       
       tipoEnvio: form.tipoEnvio,
       costoEnvio: costoEnvioCalculado.value,
       
       tipoPago: form.metodoPago,
-      tipoTarjeta: marcaTarjeta,
+      tipoTarjeta: marca,
       ultimos4Digitos: ultimos4,
       bancoTarjeta: form.metodoPago.includes('TARJETA') ? "Web E-commerce" : null,
       nombreTitular: form.tarjeta.titular,
       
-      items: itemsCarrito, // En vez de detalles, el DTO de Java pide "items"
+      items: itemsCarrito, 
       
       observaciones: `Comprobante solicitado: ${form.tipoComprobante}`
     };
 
-    // 4️⃣ UNA SOLA LLAMADA A LA API USANDO LA NUEVA RUTA /api/v1/pedidos
     const respuestaBackend = await apiClient.crearPedido(payloadMaestro);
 
-    // 5️⃣ Vaciamos el carrito tras confirmación exitosa
-    await carritoStore.vaciarBD(usuarioGuardado.idUsuario);
+    await carritoStore.vaciarBD(usuarioGuardado.idUsuario || usuarioGuardado.id);
 
-    // 6️⃣ Redirigimos pasando el ticket real (nroPedido) devuelto por Java
-    const ticketFinal = respuestaBackend.pedido.nroPedido; // El JSON de Java manda { success: true, pedido: { nroPedido: ... } }
+    const ticketFinal = respuestaBackend.pedido.nroPedido; 
     
     router.push({ 
       path: '/confirmacion', 
@@ -319,3 +407,14 @@ const procesarPago = async () => {
   }
 };
 </script>
+
+<style scoped>
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>

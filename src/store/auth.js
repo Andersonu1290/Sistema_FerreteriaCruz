@@ -1,26 +1,45 @@
 import { reactive, watch } from 'vue';
+import { esJwtExpirado } from '@/utils/auth';
 
-// Recuperamos la sesión si existe al recargar la página
+// 1. Recuperamos la sesión si existe al recargar la página
 const sesionGuardada = localStorage.getItem('clienteEstrella');
-const clienteInicial = sesionGuardada ? JSON.parse(sesionGuardada) : null;
+let clienteInicial = null;
+
+if (sesionGuardada) {
+  try {
+    const parsed = JSON.parse(sesionGuardada);
+    
+    // MAGIA DE SEGURIDAD: Verificamos si el token ya expiró en este exacto momento
+    if (parsed.token && esJwtExpirado(parsed.token)) {
+      console.warn("Seguridad: El token JWT ha expirado. Limpiando sesión automáticamente.");
+      localStorage.removeItem('clienteEstrella');
+    } else {
+      clienteInicial = parsed;
+    }
+  } catch (e) {
+    localStorage.removeItem('clienteEstrella');
+  }
+}
 
 export const authStore = reactive({
   usuarioActual: clienteInicial,
-
+  
   get estaLogueado() {
-    return this.usuarioActual !== null;
+    // Doble verificación reactiva: Está logueado SOLO si existe el usuario Y el token está vivo
+    return this.usuarioActual !== null && !esJwtExpirado(this.usuarioActual.token);
   },
-
+  
   iniciarSesion(datosUsuario) {
     this.usuarioActual = datosUsuario;
   },
-
+  
   cerrarSesion() {
     this.usuarioActual = null;
+    localStorage.removeItem('clienteEstrella');
   }
 });
 
-// Observador: Guarda o borra automáticamente en localStorage si cambia el usuario
+// Observador: Guarda automáticamente en localStorage si el usuario cambia validamente
 watch(
   () => authStore.usuarioActual,
   (nuevoUsuario) => {
