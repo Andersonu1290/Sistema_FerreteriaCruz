@@ -6,40 +6,46 @@ import { authStore } from '../src/store/auth';
 
 describe('ProductCard Component', () => {
   it('Debe disparar la función agregarBD al hacer clic en el botón (+)', async () => {
-    // 1. Espiamos la función
-    const spy = vi.spyOn(carritoStore, 'agregarBD').mockImplementation(() => {});
+    // 1. Espiamos directamente la función agregarBD de la store usando vi.spyOn
+    const spy = vi.spyOn(carritoStore, 'agregarBD').mockImplementation(() => Promise.resolve());
     
-    // 🌟 2. CORRECCIÓN: Simulamos la sesión alimentando las variables reales
-    // Al darle un token, el getter "estaLogueado" automáticamente devolverá "true"
-    authStore.token = 'token-falso-123';
+    // 2. Simulamos la sesión activa del cliente
     authStore.usuarioActual = { idUsuario: 1 };
+    
+    // Forzamos el estado logueado simulando el getter o la propiedad necesaria
+    vi.spyOn(authStore, 'estaLogueado', 'get').mockReturnValue(true);
 
-    // Evitamos que los alert() nativos ensucien la consola de Vitest
+    // Evitamos que los alert() nativos interfieran en la prueba
     vi.spyOn(window, 'alert').mockImplementation(() => {});
 
-    // 3. Montamos el componente
+    // 3. Montamos el componente con un router simulado
     const wrapper = mount(ProductCard, {
       props: {
-        // AGREGAMOS STOCK para que pase la validación de "Agotado"
         producto: { idProducto: 1, nombre: 'Paracetamol', precio: 5.00, codigoSKU: 'MED-001', stock: 10 }
       },
       global: {
         stubs: {
           'router-link': true
+        },
+        mocks: {
+          $router: {
+            push: vi.fn()
+          }
         }
       }
     });
 
-    // 4. Buscamos el botón y simulamos el clic
+    // 4. Buscamos el botón de incremento (+) y simulamos el clic
     const boton = wrapper.find('button');
     await boton.trigger('click');
+    
+    // Esperamos a que se resuelvan las promesas pendientes del ciclo de Vue
+    await wrapper.vm.$nextTick();
 
-    // 5. Verificamos que se haya llamado a la función
+    // 5. Verificamos que se haya llamado a la función de la base de datos
     expect(spy).toHaveBeenCalled();
 
-    // 6. Limpieza al terminar la prueba para no afectar a las demás
+    // 6. Restauramos los espías
     spy.mockRestore();
-    authStore.token = null;
-    authStore.usuarioActual = null;
   });
 });

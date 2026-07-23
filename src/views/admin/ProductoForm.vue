@@ -27,7 +27,7 @@
                 <input type="text" id="txtSku" name="codigoSKU" class="input-tech input-mono" required placeholder="Ej. CER01" autocomplete="off">
 
                 <label class="form-label">Nombre / Especificación del Producto:</label>
-                <input type="text" id="txtNombre" name="nombre" class="input-tech" required placeholder="Ej. Monitor Gamer 24&quot;" autocomplete="off">
+                <input type="text" id="txtNombre" name="nombre" class="input-tech" required placeholder="Ej. Tubos&quot;" autocomplete="off">
                 
                 <label class="form-label">Familia / Categoría del Componente:</label>
                 <div class="d-flex align-center gap-15 mb-25">

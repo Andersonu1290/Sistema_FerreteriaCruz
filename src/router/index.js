@@ -24,6 +24,7 @@ import LibroReclamacionesView from '../views/public/LibroReclamacionesView.vue'
 import SeguimientoView from '../views/public/SeguimientoView.vue'
 import Politicas_Privacidad_View from '@/views/public/Politicas_Privacidad_View.vue'
 import TerminosCondicionesView from '../views/public/TerminosCondicionesView.vue'
+import RegistroPublicoView from '@/views/public/RegistroPublicoView.vue'
 
 // Vistas del Admin
 import Login from '../views/admin/Login.vue'
@@ -54,6 +55,7 @@ const router = createRouter({
         { path: 'nosotros', name: 'nosotros', component: NosotrosView },
         { path: 'checkout', name: 'checkout', component: CheckoutView, meta: { requiresClientAuth: true } },
         { path: 'login', name: 'loginPublico', component: LoginPublicoView },
+        { path: 'registro', name: 'registro', component: RegistroPublicoView },
         { path: 'confirmacion', name: 'confirmacion', component: ConfirmacionView },
         { path: 'libro-reclamaciones', name: 'libroReclamaciones', component: LibroReclamacionesView },
         { path: 'politicas-privacidad', name: 'politicasPrivcadidad', component: Politicas_Privacidad_View},

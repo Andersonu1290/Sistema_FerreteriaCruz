@@ -161,68 +161,40 @@ html:not(.dark) .btn-flotante-tema {
 /* =======================================================
    INPUTS
    ======================================================= */
-
 .admin-container .input-tech{
-
     background:#fff !important;
     color:#0f172a !important;
-
     border:1px solid #cbd5e1 !important;
     border-radius:8px !important;
-
-    padding:.5rem 1rem !important;
-
+    padding:0.75rem 1rem !important; /* Más espacio interno */
+    font-size: 1rem !important; /* Texto más grande (16px) */
     transition:all .2s ease !important;
 }
-
 .admin-container .input-tech:focus{
-
     border-color:#0d4d8b !important;
-
     box-shadow:0 0 0 3px rgba(13,77,139,.10) !important;
-
     outline:none !important;
 }
 
-/* =======================================================
-   TABLAS
-   ======================================================= */
-
 .admin-container .tech-table{
-
     width:100% !important;
-
     border-collapse:collapse !important;
 }
-
 .admin-container .tech-table th{
-
     background:#f1f5f9 !important;
-
     color:#475569 !important;
-
-    font-size:.75rem !important;
-
-    font-weight:600 !important;
-
+    font-size:0.9rem !important; /* Subimos de 0.75rem a 0.9rem */
+    font-weight:700 !important;
     text-transform:uppercase !important;
-
-    padding:12px 16px !important;
-
+    padding:16px 18px !important; /* Celdas más altas */
     border-bottom:2px solid #e2e8f0 !important;
 }
-
 .admin-container .tech-table td{
-
     background:#fff !important;
-
     color:#334155 !important;
-
     border-bottom:1px solid #f1f5f9 !important;
-
-    padding:12px 16px !important;
-
-    font-size:.875rem !important;
+    padding:16px 18px !important; /* Celdas más altas */
+    font-size:1.05rem !important; /* Subimos de 0.875 a 1.05rem (~17px) */
 }
 
 /* =======================================================
@@ -250,30 +222,15 @@ html:not(.dark) .btn-flotante-tema {
 /* =======================================================
    BOTONES
    ======================================================= */
-
 .admin-container .btn-tech{
     background-color:#ffffff !important;
     border:1px solid #cbd5e1 !important;
     color:#334155 !important;
     border-radius:8px !important;
-    font-weight:500 !important;
+    font-weight:600 !important;
+    font-size:1rem !important; /* Botones más legibles */
+    padding: 0.6rem 1.2rem !important;
     transition:all .2s ease !important;
-}
-
-.admin-container .btn-tech:hover{
-    background:#f8fafc !important;
-}
-
-.admin-container .btn-success-tech{
-    background:#f0fdf4 !important;
-    border:1px solid #86efac !important;
-    color:#166534 !important;
-}
-
-.admin-container .btn-danger-tech{
-    background:#fef2f2 !important;
-    border:1px solid #fca5a5 !important;
-    color:#991b1b !important;
 }
 
 /* =======================================================
@@ -777,4 +734,49 @@ html:not(.dark) .btn-flotante-tema {
     border-color:#1d4ed8 !important;
 
     color:#ffffff !important;
+}
+
+/* =======================================================
+   🎯 ESCALADO GLOBAL DE TEXTOS (MODO LECTURA PROFESORA)
+   ======================================================= */
+/* Aumentamos la fuente base de todo el panel administrador */
+.admin-container {
+    font-size: 1.05rem !important; 
+}
+
+/* Forzamos que las clases pequeñas de Tailwind sean más grandes */
+.admin-container .text-xs { 
+    font-size: 0.9rem !important; 
+    line-height: 1.3rem !important; 
+}
+.admin-container .text-sm { 
+    font-size: 1.05rem !important; 
+    line-height: 1.5rem !important; 
+}
+.admin-container .text-base { 
+    font-size: 1.15rem !important; 
+    line-height: 1.75rem !important; 
+}
+.admin-container .text-lg { 
+    font-size: 1.3rem !important; 
+    line-height: 1.8rem !important; 
+}
+.admin-container .text-xl { 
+    font-size: 1.6rem !important; 
+    line-height: 2rem !important; 
+}
+.admin-container .text-2xl { 
+    font-size: 1.8rem !important; 
+    line-height: 2.2rem !important; 
+}
+.admin-container .text-3xl { 
+    font-size: 2.2rem !important; 
+    line-height: 2.5rem !important; 
+}
+
+/* Aumentar los badges / etiquetas de estado */
+.admin-container .badge,
+.admin-container .user-badge {
+    font-size: 0.9rem !important;
+    padding: 8px 16px !important;
 }

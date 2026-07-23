@@ -74,7 +74,7 @@
                   <div class="text-[10px] text-blue-600 dark:text-blue-400 font-bold uppercase tracking-widest">🚚 ENVÍO: {{ pedido.tipoEnvio }}</div>
                 </td>
                 <td>
-                  <div class="font-black text-lg">S/. {{ Number(pedido.total).toFixed(2) }}</div>
+                  <div class="font-black text-lg whitespace-nowrap">S/. {{ Number(pedido.total).toFixed(2) }}</div>
                 </td>
                 <td class="text-center">
                   <span v-if="pedido.estado === 'PENDIENTE'" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-black uppercase tracking-widest bg-amber-100 text-amber-700 border border-amber-200">
@@ -157,7 +157,7 @@
                   <div class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">S/N: {{ venta.nroSerie }}</div>
                 </td>
                 <td>
-                  <div class="font-black text-lg">S/. {{ Number(venta.total).toFixed(2) }}</div>
+                  <div class="font-black text-lg whitespace-nowrap">S/. {{ Number(venta.total).toFixed(2) }}</div>
                 </td>
                 <td class="text-center">
                   <span v-if="venta.estado === 'COMPLETADA'" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-black uppercase tracking-widest bg-emerald-100 text-emerald-700 border border-emerald-200">
@@ -196,27 +196,27 @@
     <!-- MODAL LOGÍSTICO (Pedidos Web)              -->
     <!-- ========================================== -->
     <div v-if="modal.visible" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 print-hide">
-      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
-        <div class="p-6 border-b border-slate-100 bg-slate-50">
-          <h3 class="text-xl font-black text-slate-800">{{ modal.titulo }}</h3>
-          <p class="text-sm text-slate-500 mt-1">Pedido: <strong class="text-medical-blue">{{ modal.pedido.nroPedido }}</strong></p>
+      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden" style="background-color: #ffffff !important;">
+        <div class="p-6 border-b border-slate-100 bg-slate-50" style="background-color: #f8fafc !important;">
+          <h3 class="text-xl font-black text-slate-800" style="color: #0f172a !important;">{{ modal.titulo }}</h3>
+          <p class="text-sm text-slate-500 mt-1" style="color: #64748b !important;">Pedido: <strong class="text-blue-600" style="color: #2563eb !important;">{{ modal.pedido.nroPedido }}</strong></p>
         </div>
         <div class="p-6">
           <div v-if="modal.tipo === 'ENVIAR'">
-            <label class="block text-xs font-black text-slate-400 uppercase mb-2">Empresa y Nro. de Seguimiento</label>
-            <input v-model="modal.tracking" type="text" placeholder="Ej: Olva Courier - TRK-98765" class="w-full bg-white border-2 border-slate-200 rounded-xl py-3 px-4 focus:ring-2 focus:ring-medical-blue outline-none transition-all font-medium text-slate-800">
-            <p class="text-xs text-slate-400 mt-2">El cliente verá este código en su panel de seguimiento.</p>
+            <label class="block text-xs font-black text-slate-400 uppercase mb-2" style="color: #475569 !important;">Empresa y Nro. de Seguimiento</label>
+            <input v-model="modal.tracking" type="text" placeholder="Ej: Olva Courier - TRK-98765" class="w-full bg-white border-2 border-slate-200 rounded-xl py-3 px-4 outline-none transition-all font-medium text-slate-800" style="background-color: #ffffff !important; color: #0f172a !important;">
+            <p class="text-xs text-slate-400 mt-2" style="color: #94a3b8 !important;">El cliente verá este código en su panel de seguimiento.</p>
           </div>
           <div v-if="modal.tipo === 'ENTREGAR'">
-            <p class="text-slate-700 font-medium text-sm">Estás a punto de confirmar que el cliente recibió su paquete satisfactoriamente.</p>
+            <p class="text-slate-700 font-medium text-sm" style="color: #334155 !important;">Estás a punto de confirmar que el cliente recibió su paquete satisfactoriamente.</p>
           </div>
           <div v-if="modal.tipo === 'REVERTIR'">
-            <p class="text-red-600 font-medium text-sm">Estás a punto de anular este pedido web. Los productos regresarán automáticamente al almacén.</p>
+            <p class="text-red-600 font-medium text-sm" style="color: #dc2626 !important;">Estás a punto de anular este pedido web. Los productos regresarán automáticamente al almacén.</p>
           </div>
         </div>
-        <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-end gap-3">
-          <button @click="cerrarModal" :disabled="procesando" class="px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-200 rounded-xl transition-colors">Cancelar</button>
-          <button @click="ejecutarAccion" :disabled="procesando" class="px-5 py-2.5 text-sm font-bold text-white rounded-xl transition-all shadow-md active:scale-95" :class="modal.colorBtn">
+        <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-end gap-3" style="background-color: #f8fafc !important;">
+          <button @click="cerrarModal" :disabled="procesando" class="px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-200 rounded-xl transition-colors" style="color: #475569 !important;">Cancelar</button>
+          <button @click="ejecutarAccion" :disabled="procesando" class="px-5 py-2.5 text-sm font-bold text-white rounded-xl transition-all shadow-md active:scale-95" :class="modal.colorBtn" style="color: #ffffff !important;">
             {{ procesando ? 'Procesando...' : modal.textoBtn }}
           </button>
         </div>
@@ -227,17 +227,17 @@
     <!-- MODAL ANULAR POS                           -->
     <!-- ========================================== -->
     <div v-if="modalAnular.visible" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 print-hide">
-      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
-        <div class="p-6 border-b border-red-100 bg-red-50 text-red-600">
-          <h3 class="text-xl font-black">Anular Venta Física</h3>
-          <p class="text-sm mt-1">Ticket: <strong>{{ modalAnular.venta.nroComprobante }}</strong></p>
+      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden" style="background-color: #ffffff !important;">
+        <div class="p-6 border-b border-red-100 bg-red-50 text-red-600" style="background-color: #fef2f2 !important;">
+          <h3 class="text-xl font-black" style="color: #dc2626 !important;">Anular Venta Física</h3>
+          <p class="text-sm mt-1" style="color: #dc2626 !important;">Ticket: <strong>{{ modalAnular.venta.nroComprobante }}</strong></p>
         </div>
         <div class="p-6">
-          <p class="text-slate-700 font-medium text-sm">¿Estás seguro de anular esta venta? El número de serie <strong>{{ modalAnular.venta.nroSerie }}</strong> regresará a estado DISPONIBLE en el inventario.</p>
+          <p class="text-slate-700 font-medium text-sm" style="color: #334155 !important;">¿Estás seguro de anular esta venta? El número de serie <strong style="color: #0f172a !important;">{{ modalAnular.venta.nroSerie }}</strong> regresará a estado DISPONIBLE en el inventario.</p>
         </div>
-        <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-end gap-3">
-          <button @click="modalAnular.visible = false" :disabled="procesando" class="px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-200 rounded-xl transition-colors">Cancelar</button>
-          <button @click="procesarAnulacionPOS" :disabled="procesando" class="px-5 py-2.5 text-sm font-bold text-white bg-red-500 hover:bg-red-600 rounded-xl transition-all shadow-md active:scale-95">
+        <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-end gap-3" style="background-color: #f8fafc !important;">
+          <button @click="modalAnular.visible = false" :disabled="procesando" class="px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-200 rounded-xl transition-colors" style="color: #475569 !important;">Cancelar</button>
+          <button @click="procesarAnulacionPOS" :disabled="procesando" class="px-5 py-2.5 text-sm font-bold text-white bg-red-500 hover:bg-red-600 rounded-xl transition-all shadow-md active:scale-95" style="color: #ffffff !important;">
             {{ procesando ? 'Anulando...' : 'Sí, Anular Venta' }}
           </button>
         </div>
