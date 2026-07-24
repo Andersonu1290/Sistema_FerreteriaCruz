@@ -5,24 +5,36 @@
     <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-medical-blue/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
 
     <div class="max-w-6xl w-full bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col-reverse md:flex-row border border-slate-100 relative z-10">
-      
-      <!-- Lado Izquierdo: Formulario -->
-      <div class="w-full md:w-1/2 p-8 sm:p-12 lg:p-16 bg-white relative overflow-y-auto max-h-[85vh] custom-scrollbar">
         
+      <!-- Lado Izquierdo: Formularios (Login o Recuperación) -->
+      <div class="w-full md:w-1/2 p-8 sm:p-12 lg:p-16 bg-white relative overflow-y-auto max-h-[85vh] custom-scrollbar">
+          
         <div class="mb-8">
-          <h1 class="text-3xl font-black text-slate-800 tracking-tight">Bienvenido de nuevo</h1>
-          <p class="text-slate-500 mt-2 text-sm font-medium">Ingresa tus credenciales para continuar con tus compras y proyectos.</p>
+          <h1 class="text-3xl font-black text-slate-800 tracking-tight">
+            {{ modoRecuperacion ? 'Recuperar Contraseña' : 'Bienvenido de nuevo' }}
+          </h1>
+          <p class="text-slate-500 mt-2 text-sm font-medium">
+            {{ modoRecuperacion ? 'Ingresa tu correo electrónico registrado y te enviaremos una nueva contraseña temporal.' : 'Ingresa tus credenciales para continuar con tus compras y proyectos.' }}
+          </p>
         </div>
 
-        <!-- Banner inteligente si viene de registrarse -->
+        <!-- Mensajes Globales -->
         <div v-if="mensajeExito" class="p-4 bg-emerald-50 text-emerald-600 border border-emerald-200 rounded-xl text-sm font-bold flex items-center gap-3 shadow-sm mb-6 animate-fade-in">
           <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
           <span>{{ mensajeExito }}</span>
         </div>
 
-        <form @submit.prevent="procesarLogin" class="space-y-5">
-          
-          <div class="animate-fade-in">
+        <div v-if="mensajeError" class="p-4 bg-red-50 text-red-600 border border-red-200 rounded-xl text-sm font-bold flex items-start gap-3 shadow-sm mb-6 animate-fade-in">
+          <svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+          <span>{{ mensajeError }}</span>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- FORMULARIO 1: LOGIN NORMAL                 -->
+        <!-- ========================================== -->
+        <form v-if="!modoRecuperacion" @submit.prevent="procesarLogin" class="space-y-5 animate-fade-in">
+            
+          <div>
             <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Usuario o Correo</label>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -31,11 +43,12 @@
               <input v-model="form.username" type="text" name="username" autocomplete="username" required placeholder="Ej. jperez o tu@correo.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3.5 pl-11 pr-4 focus:ring-2 focus:ring-medical-blue focus:bg-white outline-none transition-all font-medium text-slate-700">
             </div>
           </div>
-          
-          <div class="animate-fade-in">
+            
+          <div>
             <div class="flex justify-between items-center mb-2">
               <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest">Contraseña</label>
-              <a href="#" class="text-[10px] font-bold text-medical-blue hover:underline">¿La olvidaste?</a>
+              <!-- Botón que activa el modo recuperación -->
+              <a href="#" @click.prevent="activarModoRecuperacion" class="text-[10px] font-bold text-medical-blue hover:underline">¿La olvidaste?</a>
             </div>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -49,24 +62,44 @@
             </div>
           </div>
 
-          <div v-if="mensajeError" class="p-4 bg-red-50 text-red-600 border border-red-200 rounded-xl text-sm font-bold flex items-start gap-3 shadow-sm animate-fade-in">
-            <svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-            <span>{{ mensajeError }}</span>
-          </div>
-
           <button type="submit" :disabled="procesando || !esFormularioValido" class="w-full bg-slate-900 hover:bg-medical-blue text-white py-4 rounded-xl font-black text-lg tracking-wide transition-all shadow-lg hover:shadow-medical-blue/30 active:scale-95 disabled:opacity-50 disabled:active:scale-100 flex justify-center items-center gap-2 mt-6">
             <span v-if="procesando" class="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full"></span>
             {{ procesando ? 'Procesando...' : 'Ingresar a mi cuenta' }}
           </button>
         </form>
 
-        <div class="mt-8 pt-6 border-t border-slate-100 text-center">
+        <!-- ========================================== -->
+        <!-- FORMULARIO 2: RECUPERAR CONTRASEÑA         -->
+        <!-- ========================================== -->
+        <form v-else @submit.prevent="procesarRecuperacion" class="space-y-5 animate-fade-in">
+          <div>
+            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Correo Electrónico</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z"></path></svg>
+              </div>
+              <input v-model="formRecuperacion.correo" type="email" required placeholder="tu@correo.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3.5 pl-11 pr-4 focus:ring-2 focus:ring-medical-blue focus:bg-white outline-none transition-all font-medium text-slate-700">
+            </div>
+          </div>
+
+          <button type="submit" :disabled="procesando || !formRecuperacion.correo" class="w-full bg-medical-blue hover:bg-blue-600 text-white py-4 rounded-xl font-black text-lg tracking-wide transition-all shadow-lg active:scale-95 disabled:opacity-50 disabled:active:scale-100 flex justify-center items-center gap-2 mt-6">
+            <span v-if="procesando" class="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full"></span>
+            {{ procesando ? 'Enviando...' : 'Restablecer Contraseña' }}
+          </button>
+
+          <div class="text-center mt-4">
+            <button type="button" @click="cancelarRecuperacion" class="text-sm font-bold text-slate-500 hover:text-slate-800 transition-colors">
+              Volver al inicio de sesión
+            </button>
+          </div>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-slate-100 text-center" v-if="!modoRecuperacion">
           <p class="text-sm text-slate-500 mb-4">¿Eres nuevo en Ferretería Cruz?</p>
           <router-link to="/registro" class="inline-block text-medical-blue font-black hover:text-medical-dark transition-colors px-6 py-2 rounded-full border-2 border-medical-blue hover:bg-blue-50 w-full md:w-auto">
             Regístrate gratis
           </router-link>
         </div>
-
       </div>
 
       <!-- Lado Derecho: Branding -->
@@ -81,7 +114,6 @@
           <p class="text-slate-300 text-sm leading-relaxed max-w-sm">Ferretería Cruz te brinda las mejores herramientas y materiales. Únete y obtén un control total sobre tus pedidos en tiempo real.</p>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -95,13 +127,15 @@ import { normalizarSesionAutenticacion } from '@/utils/auth';
 
 const router = useRouter();
 const route = useRoute();
-
 const procesando = ref(false);
 const mensajeError = ref('');
 const mensajeExito = ref('');
 const mostrarPassword = ref(false);
 
+const modoRecuperacion = ref(false); // <--- NUEVA VARIABLE DE ESTADO
+
 const form = reactive({ username: '', password: '' });
+const formRecuperacion = reactive({ correo: '' }); // <--- NUEVO FORMULARIO
 
 const BASE_URL = (import.meta.env.VITE_API_URL || '/api') + '/v1';
 
@@ -113,11 +147,13 @@ const esFormularioValido = computed(() => {
 onMounted(() => {
   if (route.query.registrado === 'true') {
     mensajeExito.value = '¡Cuenta creada con éxito! Ahora puedes iniciar sesión.';
-    // Limpiamos la URL para que no siga mostrando el flag si recarga la página
     router.replace({ path: '/login', query: { redirect: route.query.redirect } });
   }
 });
 
+// ----------------------------------------
+// LÓGICA DE LOGIN NORMAL
+// ----------------------------------------
 const procesarLogin = async () => {
   procesando.value = true;
   mensajeError.value = '';
@@ -152,6 +188,54 @@ const procesarLogin = async () => {
       
     router.push(redireccion);
     
+  } catch (error) {
+    mensajeError.value = "Error de conexión con el servidor. Inténtalo más tarde.";
+  } finally {
+    procesando.value = false;
+  }
+};
+
+// ----------------------------------------
+// LÓGICA DE RECUPERACIÓN DE CONTRASEÑA
+// ----------------------------------------
+const activarModoRecuperacion = () => {
+  modoRecuperacion.value = true;
+  mensajeError.value = '';
+  mensajeExito.value = '';
+};
+
+const cancelarRecuperacion = () => {
+  modoRecuperacion.value = false;
+  mensajeError.value = '';
+  mensajeExito.value = '';
+  formRecuperacion.correo = '';
+};
+
+const procesarRecuperacion = async () => {
+  procesando.value = true;
+  mensajeError.value = '';
+  mensajeExito.value = '';
+
+  try {
+    const res = await fetch(`${BASE_URL}/auth/recuperar-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ correo: formRecuperacion.correo })
+    });
+
+    if (!res.ok) {
+      mensajeError.value = 'No encontramos ninguna cuenta asociada a este correo.';
+      return;
+    }
+
+    const data = await res.json();
+    mensajeExito.value = data.mensaje || 'Se ha generado una nueva contraseña temporal.';
+    
+    // Regresamos al login después de 4 segundos
+    setTimeout(() => {
+      cancelarRecuperacion();
+    }, 4000);
+
   } catch (error) {
     mensajeError.value = "Error de conexión con el servidor. Inténtalo más tarde.";
   } finally {
